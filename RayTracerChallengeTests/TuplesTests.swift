@@ -175,4 +175,69 @@ class TuplesTests: XCTestCase {
 		//	Then a * 0.5 = tuple(0.5, -1, 1.5, -2)
 		XCTAssertEqual(Tuple(x: 0.5, y: -1, z: 1.5, w: -2), a * 0.5)
 	}
+	
+	func test_DividedByScalar() throws {
+		//	Scenario: Dividing a tuple by a scalar
+		//	Given a ← tuple(1, -2, 3, -4)
+		//	Then a / 2 = tuple(0.5, -1, 1.5, -2)
+		let a = Tuple(x: 1, y: -2, z: 3, w: -4)
+		XCTAssertEqual(Tuple(x: 0.5, y: -1, z: 1.5, w: -2), a / 2)
+	}
+	
+	func test_computingMagnitudeOfVector() throws {
+		//	Scenario: Computing the magnitude of vector(1, 0, 0)
+		//	Given v ← vector(1, 0, 0)
+		//	Then magnitude(v) = 1
+		var v = Vector(x: 1, y: 0, z: 0)
+		XCTAssertEqual(1, v.magnitude)
+		
+		//	Scenario: Computing the magnitude of vector(0, 1, 0)
+		//	Given v ← vector(0, 1, 0)
+		//	Then magnitude(v) = 1
+		v = Vector(x: 0, y: 1, z: 0)
+		XCTAssertEqual(1, v.magnitude)
+		
+		//	Scenario: Computing the magnitude of vector(0, 0, 1)
+		//	Given v ← vector(0, 0, 1)
+		//	Then magnitude(v) = 1
+		v = Vector(x: 0, y: 0, z: 1)
+		XCTAssertEqual(1, v.magnitude)
+		
+		//	Scenario: Computing the magnitude of vector(1, 2, 3)
+		//	Given v ← vector(1, 2, 3)
+		//	Then magnitude(v) = √14
+		v = Vector(x: 1, y: 2, z: 3)
+		XCTAssertEqual(sqrt(14), v.magnitude)
+		
+		//	Scenario: Computing the magnitude of vector(-1, -2, -3)
+		//	Given v ← vector(-1, -2, -3)
+		//	Then magnitude(v) = √14
+		v = Vector(x: -1, y: -2, z: -3)
+		XCTAssertEqual(sqrt(14), v.magnitude)
+	}
+	
+	func test_normalizing() throws {
+		//	Scenario: Normalizing vector(4, 0, 0) gives (1, 0, 0)
+		//	Given v ← vector(4, 0, 0)
+		//	Then normalize(v) = vector(1, 0, 0)
+		var v = Vector(x: 4, y: 0, z: 0)
+		v.normalized()
+		XCTAssertEqual(Vector(x: 1, y: 0, z: 0), v)
+		
+		//	Scenario: Normalizing vector(1, 2, 3)
+		//	Given v ← vector(1, 2, 3)
+		//	Then normalize(v) = approximately vector(0.26726, 0.53452, 0.80178)
+		v = Vector(x: 1, y: 2, z: 3)
+		v.normalized()
+		XCTAssertEqual(Vector(x: 0.26726, y: 0.53452, z: 0.80178), v)
+		
+		//	Scenario: The magnitude of a normalized vector
+		// Given v ← vector(1, 2, 3)
+		//	When norm ← normalize(v)
+		//	Then magnitude(norm) = 1
+		v = Vector(x: 1, y: 2, z: 3)
+		v.normalized()
+		XCTAssertTrue(Float(1).isEqual(to: v.magnitude))
+		XCTAssertTrue(1 === v.magnitude)
+	}
 }

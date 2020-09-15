@@ -9,7 +9,13 @@
 import Foundation
 
 extension Float {
-	func equal(to rhs: Float) -> Bool {
+	static let epsilon: Float = 0.00001
+	
+	static func === (rhs: Self, lhs: Self) -> Bool {
+		rhs.isEqual(to: lhs)
+	}
+	
+	func isEqual(to rhs: Float) -> Bool {
 		let EPSILON: Float = 0.00001
 		
 		if abs(self-rhs) < EPSILON {
