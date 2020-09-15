@@ -13,6 +13,9 @@
 		D7E0BF832510BC730044100B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7E0BF822510BC730044100B /* Preview Assets.xcassets */; };
 		D7E0BF862510BC730044100B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7E0BF842510BC730044100B /* Main.storyboard */; };
 		D7E0BF922510BC740044100B /* RayTracerChallengeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E0BF912510BC740044100B /* RayTracerChallengeTests.swift */; };
+		D7E0BF9D2510BCB20044100B /* TuplesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E0BF9C2510BCB20044100B /* TuplesTests.swift */; };
+		D7E0BFA02510BE5D0044100B /* Tuple.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E0BF9F2510BE5D0044100B /* Tuple.swift */; };
+		D7E0BFA42510C5A00044100B /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E0BFA32510C5A00044100B /* Helpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +40,9 @@
 		D7E0BF8D2510BC740044100B /* RayTracerChallengeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RayTracerChallengeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7E0BF912510BC740044100B /* RayTracerChallengeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RayTracerChallengeTests.swift; sourceTree = "<group>"; };
 		D7E0BF932510BC740044100B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D7E0BF9C2510BCB20044100B /* TuplesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TuplesTests.swift; sourceTree = "<group>"; };
+		D7E0BF9F2510BE5D0044100B /* Tuple.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tuple.swift; sourceTree = "<group>"; };
+		D7E0BFA32510C5A00044100B /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +84,7 @@
 		D7E0BF7A2510BC720044100B /* RayTracerChallenge */ = {
 			isa = PBXGroup;
 			children = (
+				D7E0BF9E2510BE4A0044100B /* Chap.1 */,
 				D7E0BF7B2510BC720044100B /* AppDelegate.swift */,
 				D7E0BF7D2510BC720044100B /* ContentView.swift */,
 				D7E0BF7F2510BC730044100B /* Assets.xcassets */,
@@ -85,6 +92,7 @@
 				D7E0BF872510BC730044100B /* Info.plist */,
 				D7E0BF882510BC730044100B /* RayTracerChallenge.entitlements */,
 				D7E0BF812510BC730044100B /* Preview Content */,
+				D7E0BFA32510C5A00044100B /* Helpers.swift */,
 			);
 			path = RayTracerChallenge;
 			sourceTree = "<group>";
@@ -102,8 +110,17 @@
 			children = (
 				D7E0BF912510BC740044100B /* RayTracerChallengeTests.swift */,
 				D7E0BF932510BC740044100B /* Info.plist */,
+				D7E0BF9C2510BCB20044100B /* TuplesTests.swift */,
 			);
 			path = RayTracerChallengeTests;
+			sourceTree = "<group>";
+		};
+		D7E0BF9E2510BE4A0044100B /* Chap.1 */ = {
+			isa = PBXGroup;
+			children = (
+				D7E0BF9F2510BE5D0044100B /* Tuple.swift */,
+			);
+			path = Chap.1;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -208,7 +225,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D7E0BF7E2510BC720044100B /* ContentView.swift in Sources */,
+				D7E0BFA02510BE5D0044100B /* Tuple.swift in Sources */,
 				D7E0BF7C2510BC720044100B /* AppDelegate.swift in Sources */,
+				D7E0BFA42510C5A00044100B /* Helpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,6 +235,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7E0BF9D2510BCB20044100B /* TuplesTests.swift in Sources */,
 				D7E0BF922510BC740044100B /* RayTracerChallengeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
