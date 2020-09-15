@@ -240,4 +240,34 @@ class TuplesTests: XCTestCase {
 		XCTAssertTrue(Float(1).isEqual(to: v.magnitude))
 		XCTAssertTrue(1 === v.magnitude)
 	}
+    
+    func test_dotProductOfTwoTuples() throws {
+        //  Scenario: The dot product of two tuples
+        //  Given a ← vector(1, 2, 3)
+        //  And b ← vector(2, 3, 4)
+        //  Then dot(a, b) = 20
+		let a = Vector(x: 1, y: 2, z: 3)
+		let b = Vector(x: 2, y: 3, z: 4)
+		XCTAssertEqual(20, a.dot(b))
+    }
+	
+	func test_crossProduct() throws {
+		//	Scenario: The cross product of two vectors
+		//	Given a ← vector(1, 2, 3)
+		//	And b ← vector(2, 3, 4)
+		//	Then cross(a, b) = vector(-1, 2, -1)
+		//	And cross(b, a) = vector(1, -2, 1)
+		let a = Vector(x: 1, y: 2, z: 3)
+		let b = Vector(x: 2, y: 3, z: 4)
+		XCTAssertEqual(Vector(x: -1, y: 2, z: -1), a.cross(b))
+		XCTAssertEqual(Vector(x: 1, y: -2, z: 1),  b.cross(a))
+	}
+	
+	func _test_puttingItTogether() throws {
+//		var p = projectile(Point(x: 0, y: 1, z: 0), Vector(x: 1, y: 1, z: 0).normalizing())
+//		var e = environment(Vector(0, -0.1, 0), Vector(-0.01, 0, 0))
+//		func tick(env: (Tuple, Tuple), proj: (Tuple, Tuple)) -> Tuple {
+//
+//		}
+	}
 }

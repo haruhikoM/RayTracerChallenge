@@ -22,6 +22,7 @@ struct Tuple {
 
 extension Tuple {
 	var magnitude: Float {
+		assert(type == .vector)
 		return sqrt(x*x + y*y + z*z + w*w)
 	}
 	
@@ -31,6 +32,23 @@ extension Tuple {
 	
 	mutating func normalized() {
 		self = self.normalizing()
+	}
+	
+	/// dot product; a.k.a. scalar product or inner product
+	/// the smaller the dot product, the larger the angle between the vectors
+	///
+	func dot(_ other: Tuple) -> Float {
+		x * other.x + y * other.y + z * other.z + w * other.w
+	}
+	
+	func cross(_ other: Tuple) -> Tuple {
+		assert(type == .vector)
+		assert(other.type == .vector)
+		return Vector(
+			x: y*other.z - z*other.y,
+			y: z*other.x - x*other.z,
+			z: x*other.y - y*other.x
+		)
 	}
 }
 
