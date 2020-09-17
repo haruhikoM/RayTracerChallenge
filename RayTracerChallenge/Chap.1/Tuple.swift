@@ -8,6 +8,13 @@
 
 import Foundation
 
+protocol Tuplize {
+	var x: Float { get }
+	var y: Float { get }
+	var z: Float { get }
+	var w: Float { get }
+}
+
 struct Tuple {
 	var x, y, z, w: Float
 	var type: Variant {
@@ -32,6 +39,11 @@ extension Tuple {
 	
 	mutating func normalized() {
 		self = self.normalizing()
+		// # Should self be returned?
+		// ... -> Self {
+		//   ...
+		//   return self
+		// }
 	}
 	
 	/// dot product; a.k.a. scalar product or inner product

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D7644883251115060013E230 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7644882251115060013E230 /* Color.swift */; };
 		D7E0BF7C2510BC720044100B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E0BF7B2510BC720044100B /* AppDelegate.swift */; };
 		D7E0BF7E2510BC720044100B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E0BF7D2510BC720044100B /* ContentView.swift */; };
 		D7E0BF802510BC730044100B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7E0BF7F2510BC730044100B /* Assets.xcassets */; };
@@ -29,6 +30,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D7644882251115060013E230 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		D7E0BF782510BC720044100B /* RayTracerChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RayTracerChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7E0BF7B2510BC720044100B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D7E0BF7D2510BC720044100B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -63,6 +65,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D7644881251113AC0013E230 /* Chap.2 */ = {
+			isa = PBXGroup;
+			children = (
+				D7644882251115060013E230 /* Color.swift */,
+			);
+			path = Chap.2;
+			sourceTree = "<group>";
+		};
 		D7E0BF6F2510BC720044100B = {
 			isa = PBXGroup;
 			children = (
@@ -84,6 +94,7 @@
 		D7E0BF7A2510BC720044100B /* RayTracerChallenge */ = {
 			isa = PBXGroup;
 			children = (
+				D7644881251113AC0013E230 /* Chap.2 */,
 				D7E0BF9E2510BE4A0044100B /* Chap.1 */,
 				D7E0BF7B2510BC720044100B /* AppDelegate.swift */,
 				D7E0BF7D2510BC720044100B /* ContentView.swift */,
@@ -227,6 +238,7 @@
 				D7E0BF7E2510BC720044100B /* ContentView.swift in Sources */,
 				D7E0BFA02510BE5D0044100B /* Tuple.swift in Sources */,
 				D7E0BF7C2510BC720044100B /* AppDelegate.swift in Sources */,
+				D7644883251115060013E230 /* Color.swift in Sources */,
 				D7E0BFA42510C5A00044100B /* Helpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
