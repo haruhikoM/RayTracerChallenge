@@ -313,4 +313,11 @@ class TuplesTests: XCTestCase {
 		XCTAssertEqual(Color(r: 0.9, g: 0.2, b: 0.04), c1 * c2)
 	}
 	
+	
+	func testPuttingItToghether() throws {
+		self.measure {
+			Exercise().chap1()
+		}
+	}
+	
 }

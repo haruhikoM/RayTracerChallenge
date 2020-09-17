@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		D7532099251322870026EF13 /* CanvasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7532098251322870026EF13 /* CanvasTests.swift */; };
 		D753209B251322E40026EF13 /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = D753209A251322E40026EF13 /* Canvas.swift */; };
+		D753209D251388110026EF13 /* PuttingItTogether.swift in Sources */ = {isa = PBXBuildFile; fileRef = D753209C251388110026EF13 /* PuttingItTogether.swift */; };
 		D7644883251115060013E230 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7644882251115060013E230 /* Color.swift */; };
 		D7E0BF7C2510BC720044100B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E0BF7B2510BC720044100B /* AppDelegate.swift */; };
 		D7E0BF7E2510BC720044100B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E0BF7D2510BC720044100B /* ContentView.swift */; };
@@ -34,6 +35,7 @@
 /* Begin PBXFileReference section */
 		D7532098251322870026EF13 /* CanvasTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasTests.swift; sourceTree = "<group>"; };
 		D753209A251322E40026EF13 /* Canvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Canvas.swift; sourceTree = "<group>"; };
+		D753209C251388110026EF13 /* PuttingItTogether.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PuttingItTogether.swift; sourceTree = "<group>"; };
 		D7644882251115060013E230 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		D7E0BF782510BC720044100B /* RayTracerChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RayTracerChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7E0BF7B2510BC720044100B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				D7E0BF9F2510BE5D0044100B /* Tuple.swift */,
+				D753209C251388110026EF13 /* PuttingItTogether.swift */,
 			);
 			path = Chap.1;
 			sourceTree = "<group>";
@@ -243,6 +246,7 @@
 			files = (
 				D7E0BF7E2510BC720044100B /* ContentView.swift in Sources */,
 				D7E0BFA02510BE5D0044100B /* Tuple.swift in Sources */,
+				D753209D251388110026EF13 /* PuttingItTogether.swift in Sources */,
 				D7E0BF7C2510BC720044100B /* AppDelegate.swift in Sources */,
 				D7644883251115060013E230 /* Color.swift in Sources */,
 				D7E0BFA42510C5A00044100B /* Helpers.swift in Sources */,

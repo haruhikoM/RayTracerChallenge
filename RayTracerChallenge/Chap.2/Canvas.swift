@@ -15,56 +15,19 @@ struct Canvas {
 	private(set) var height: Float
 	var pixels: [Color]
 	
-	private let header = """
-	P3
-	53
-	255
-	"""
-	
 	var toPPM: String {
-		var body = "\n"
+		let header = """
+		P3
+		53
+		255
+		"""
 		
-		var counter = 0
-		var pixelCounter = 0
-		let perLineColorComponentsCountLimit = 17 // Int((width-1) * 3)
-		let tempLineLength = pixels.count / Int(height)
+		var body = "\n"
+		let perLineColorComponentsCountLimit = 17
 		
 		let bodyArray = createBodyArray()
 		let perLineCount = bodyArray.count / Int(height)
-		
-		/*
-		if perLineCount < perLineColorComponentsCountLimit {
-			var iterateCounter = 0
-			for (_, component) in bodyArray.enumerated() {
-				body += String(component)
-				
-				if iterateCounter == perLineCount-1 {
-					body += "\n"
-					iterateCounter = 0
-				}
-				else {
-					body += " "
-					iterateCounter += 1
-				}
-			}
-		}
-		else {
-			var iterateCounter = 0
-			for (_, component) in bodyArray.enumerated() {
-				body += String(component)
-				
-				if iterateCounter == perLineColorComponentsCountLimit-1 {
-					body += "\n"
-					iterateCounter = 0
-				}
-				else {
-					body += " "
-					iterateCounter += 1
-				}
-			}
-		}
-		*/
-		
+
 		func composeBody(perLine: Int) {
 			var iterateCounter = 0
 			var isProcessingRemainder = false
@@ -94,27 +57,7 @@ struct Canvas {
 		}
 		
 		composeBody(perLine: perLineCount)
-		
-//		for (idx, colorComponent) in createBodyArray().enumerated() {
-//
-//		}
-//
-//		for pixel in pixels {
-//			body += pixel.toString
-//			pixelCounter += 1
-//
-//			if counter == tempLineLength {
-//				body += "\n"
-//				counter = 0
-//			}
-//			else {
-//				body += " "
-//				counter += 3
-//			}
-//		}
-//		if body.last == " " {
-			body.removeLast()
-//		}
+		body.removeLast()
 		
 		return header + body
 	}
