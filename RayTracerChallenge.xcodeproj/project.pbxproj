@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D7532099251322870026EF13 /* CanvasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7532098251322870026EF13 /* CanvasTests.swift */; };
+		D753209B251322E40026EF13 /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = D753209A251322E40026EF13 /* Canvas.swift */; };
 		D7644883251115060013E230 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7644882251115060013E230 /* Color.swift */; };
 		D7E0BF7C2510BC720044100B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E0BF7B2510BC720044100B /* AppDelegate.swift */; };
 		D7E0BF7E2510BC720044100B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E0BF7D2510BC720044100B /* ContentView.swift */; };
@@ -30,6 +32,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D7532098251322870026EF13 /* CanvasTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasTests.swift; sourceTree = "<group>"; };
+		D753209A251322E40026EF13 /* Canvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Canvas.swift; sourceTree = "<group>"; };
 		D7644882251115060013E230 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		D7E0BF782510BC720044100B /* RayTracerChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RayTracerChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7E0BF7B2510BC720044100B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -69,6 +73,7 @@
 			isa = PBXGroup;
 			children = (
 				D7644882251115060013E230 /* Color.swift */,
+				D753209A251322E40026EF13 /* Canvas.swift */,
 			);
 			path = Chap.2;
 			sourceTree = "<group>";
@@ -122,6 +127,7 @@
 				D7E0BF912510BC740044100B /* RayTracerChallengeTests.swift */,
 				D7E0BF932510BC740044100B /* Info.plist */,
 				D7E0BF9C2510BCB20044100B /* TuplesTests.swift */,
+				D7532098251322870026EF13 /* CanvasTests.swift */,
 			);
 			path = RayTracerChallengeTests;
 			sourceTree = "<group>";
@@ -240,6 +246,7 @@
 				D7E0BF7C2510BC720044100B /* AppDelegate.swift in Sources */,
 				D7644883251115060013E230 /* Color.swift in Sources */,
 				D7E0BFA42510C5A00044100B /* Helpers.swift in Sources */,
+				D753209B251322E40026EF13 /* Canvas.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,6 +256,7 @@
 			files = (
 				D7E0BF9D2510BCB20044100B /* TuplesTests.swift in Sources */,
 				D7E0BF922510BC740044100B /* RayTracerChallengeTests.swift in Sources */,
+				D7532099251322870026EF13 /* CanvasTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
