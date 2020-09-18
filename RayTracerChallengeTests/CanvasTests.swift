@@ -67,10 +67,11 @@ class CanvasTests: XCTestCase {
 		], arr)
 		var match = """
 		P3
-		53
+		2 2
 		255
 		0 0 0 0 0 0
 		0 0 0 0 0 0
+
 		"""
 		XCTAssertEqual(match, cts.toPPM)
 		
@@ -84,12 +85,33 @@ class CanvasTests: XCTestCase {
 		
 		match = """
 		P3
-		53
+		2 2
 		255
 		255 255 255 0 0 0
 		0 0 0 255 255 255
+
 		"""
 		XCTAssertEqual(match, cts.toPPM)
+	}
+	
+	func test_createBodyArrayAccordingToCanvasSize() throws {
+		let width = 20; let height = 4
+		cts = Canvas(width, height)
+		let arr = cts.createBodyArray()
+		XCTAssertFalse(arr.isEmpty)
+		XCTAssertEqual(Int(height*width)*3, arr.count)
+		
+		let bodyarr = cts.createBodyArrayAccordingToCanvasSize(base: arr)
+		let flatArr: [String] = bodyarr.flatMap({ $0 })
+		XCTAssertEqual(flatArr.count, arr.count)
+		XCTAssertFalse(bodyarr.isEmpty)
+		var counter = 0
+		for el in bodyarr {
+			XCTAssertEqual(20*3, el.count)
+			counter += 1
+		}
+		
+		XCTAssertEqual(Int(height), counter)
 	}
 	
 	func test_constructPPMheader() throws {
@@ -107,7 +129,7 @@ class CanvasTests: XCTestCase {
 		cts = Canvas(5, 3)
 		let ppm = cts.toPPM
 		let match = ["P3",
-					 "53",
+					 "5 3",
 					 "255"]
 		for (idx, line) in ppm.components(separatedBy: "\n").enumerated() {
 			if idx < 3 {
@@ -130,11 +152,12 @@ class CanvasTests: XCTestCase {
 		let match =
 		"""
 		P3
-		53
+		5 3
 		255
 		255 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 		0 0 0 0 0 0 0 128 0 0 0 0 0 0 0
 		0 0 0 0 0 0 0 0 0 0 0 0 0 0 255
+
 		"""
 		cts = Canvas(5, 3)
 		let c1 = Color(r: 1.5, g: 0, b: 0)
@@ -163,12 +186,13 @@ class CanvasTests: XCTestCase {
 		let match =
 			"""
 			P3
-			53
+			10 2
 			255
 			255 204 153 255 204 153 255 204 153 255 204 153 255 204 153 255 204
 			153 255 204 153 255 204 153 255 204 153 255 204 153
 			255 204 153 255 204 153 255 204 153 255 204 153 255 204 153 255 204
 			153 255 204 153 255 204 153 255 204 153 255 204 153
+
 			"""
 		let c = Canvas(10, 2, initialColor: Color(r: 1, g: 0.8, b: 0.6))
 		let ppm = c.toPPM
@@ -193,4 +217,21 @@ class CanvasTests: XCTestCase {
 		XCTAssertEqual("0 128 0", c2.toString)
 		XCTAssertEqual("0 0 255", c3.toString)
 	}
+	
+	func test_PPMMustEndWithNewLine() throws {
+		//	Scenario: PPM files are terminated by a newline character
+		//	Given c ← canvas(5, 3)
+		//	When ppm ← canvas_to_ppm(c)
+		//	Then ppm ends with a newline character
+		cts = Canvas(5, 3)
+		let ppm = cts.toPPM
+		let lastIndex = ppm.index(ppm.endIndex, offsetBy: -1)
+		XCTAssertEqual("\n", ppm[lastIndex])
+	}
+	
+	func test_puttingItTogetherChap2() throws {
+		Exercise().chap2()
+//		Exercise().writeTest()
+	}
+	
 }

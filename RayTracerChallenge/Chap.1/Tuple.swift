@@ -15,7 +15,7 @@ protocol Tuplize {
 	var w: Float { get }
 }
 
-struct Tuple {
+struct Tuple: CustomStringConvertible {
 	var x, y, z, w: Float
 	var type: Variant {
 		Variant(rawValue: w) ?? .unknown
@@ -24,6 +24,22 @@ struct Tuple {
 		case point  = 1.0
 		case vector = 0.0
 		case unknown = 99.9
+		
+		var toString: String {
+			switch self {
+			case .point:  return "Point"
+			case .vector: return "Vector"
+			default:
+				return "unknwon"
+				
+			}
+		}
+	}
+	
+	var description: String {
+		get {
+			"[Tuple(\(type.toString))](x: \(x), y: \(y), z: \(z))"
+		}
 	}
 }
 

@@ -221,24 +221,24 @@ class TuplesTests: XCTestCase {
 		//	Given v ← vector(4, 0, 0)
 		//	Then normalize(v) = vector(1, 0, 0)
 		var v = Vector(x: 4, y: 0, z: 0)
-		v.normalized()
-		XCTAssertEqual(Vector(x: 1, y: 0, z: 0), v)
+		var norm = v.normalizing()
+		XCTAssertEqual(Vector(x: 1, y: 0, z: 0), norm)
 		
 		//	Scenario: Normalizing vector(1, 2, 3)
 		//	Given v ← vector(1, 2, 3)
 		//	Then normalize(v) = approximately vector(0.26726, 0.53452, 0.80178)
 		v = Vector(x: 1, y: 2, z: 3)
-		v.normalized()
-		XCTAssertEqual(Vector(x: 0.26726, y: 0.53452, z: 0.80178), v)
+		norm = v.normalizing()
+		XCTAssertEqual(Vector(x: 0.26726, y: 0.53452, z: 0.80178), norm)
 		
 		//	Scenario: The magnitude of a normalized vector
 		// Given v ← vector(1, 2, 3)
 		//	When norm ← normalize(v)
 		//	Then magnitude(norm) = 1
 		v = Vector(x: 1, y: 2, z: 3)
-		v.normalized()
-		XCTAssertTrue(Float(1).isEqual(to: v.magnitude))
-		XCTAssertTrue(1 === v.magnitude)
+		norm = v.normalizing()
+		XCTAssertTrue(Float(1).isEqual(to: norm.magnitude))
+		XCTAssertTrue(1 === norm.magnitude)
 	}
     
     func test_dotProductOfTwoTuples() throws {
@@ -313,11 +313,10 @@ class TuplesTests: XCTestCase {
 		XCTAssertEqual(Color(r: 0.9, g: 0.2, b: 0.04), c1 * c2)
 	}
 	
-	
 	func testPuttingItToghether() throws {
-		self.measure {
+//		self.measure {
 			Exercise().chap1()
-		}
+//		}
 	}
 	
 }
