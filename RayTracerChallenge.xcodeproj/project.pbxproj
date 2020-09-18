@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D73740F1251490A600F9368E /* MatricesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73740F0251490A600F9368E /* MatricesTests.swift */; };
+		D73740F4251491BA00F9368E /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73740F3251491BA00F9368E /* Matrix.swift */; };
 		D7532099251322870026EF13 /* CanvasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7532098251322870026EF13 /* CanvasTests.swift */; };
 		D753209B251322E40026EF13 /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = D753209A251322E40026EF13 /* Canvas.swift */; };
 		D753209D251388110026EF13 /* PuttingItTogether.swift in Sources */ = {isa = PBXBuildFile; fileRef = D753209C251388110026EF13 /* PuttingItTogether.swift */; };
@@ -33,6 +35,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D73740F0251490A600F9368E /* MatricesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatricesTests.swift; sourceTree = "<group>"; };
+		D73740F3251491BA00F9368E /* Matrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matrix.swift; sourceTree = "<group>"; };
 		D7532098251322870026EF13 /* CanvasTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasTests.swift; sourceTree = "<group>"; };
 		D753209A251322E40026EF13 /* Canvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Canvas.swift; sourceTree = "<group>"; };
 		D753209C251388110026EF13 /* PuttingItTogether.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PuttingItTogether.swift; sourceTree = "<group>"; };
@@ -71,6 +75,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D73740F2251491A900F9368E /* Chap.3 */ = {
+			isa = PBXGroup;
+			children = (
+				D73740F3251491BA00F9368E /* Matrix.swift */,
+			);
+			path = Chap.3;
+			sourceTree = "<group>";
+		};
 		D7644881251113AC0013E230 /* Chap.2 */ = {
 			isa = PBXGroup;
 			children = (
@@ -101,6 +113,7 @@
 		D7E0BF7A2510BC720044100B /* RayTracerChallenge */ = {
 			isa = PBXGroup;
 			children = (
+				D73740F2251491A900F9368E /* Chap.3 */,
 				D7644881251113AC0013E230 /* Chap.2 */,
 				D7E0BF9E2510BE4A0044100B /* Chap.1 */,
 				D7E0BF7B2510BC720044100B /* AppDelegate.swift */,
@@ -130,6 +143,7 @@
 				D7E0BF932510BC740044100B /* Info.plist */,
 				D7E0BF9C2510BCB20044100B /* TuplesTests.swift */,
 				D7532098251322870026EF13 /* CanvasTests.swift */,
+				D73740F0251490A600F9368E /* MatricesTests.swift */,
 			);
 			path = RayTracerChallengeTests;
 			sourceTree = "<group>";
@@ -248,6 +262,7 @@
 				D7E0BFA02510BE5D0044100B /* Tuple.swift in Sources */,
 				D753209D251388110026EF13 /* PuttingItTogether.swift in Sources */,
 				D7E0BF7C2510BC720044100B /* AppDelegate.swift in Sources */,
+				D73740F4251491BA00F9368E /* Matrix.swift in Sources */,
 				D7644883251115060013E230 /* Color.swift in Sources */,
 				D7E0BFA42510C5A00044100B /* Helpers.swift in Sources */,
 				D753209B251322E40026EF13 /* Canvas.swift in Sources */,
@@ -259,6 +274,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D7E0BF9D2510BCB20044100B /* TuplesTests.swift in Sources */,
+				D73740F1251490A600F9368E /* MatricesTests.swift in Sources */,
 				D7E0BF922510BC740044100B /* RayTracerChallengeTests.swift in Sources */,
 				D7532099251322870026EF13 /* CanvasTests.swift in Sources */,
 			);

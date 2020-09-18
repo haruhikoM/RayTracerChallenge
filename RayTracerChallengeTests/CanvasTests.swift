@@ -229,7 +229,7 @@ class CanvasTests: XCTestCase {
 		XCTAssertEqual("\n", ppm[lastIndex])
 	}
 	
-	func test_puttingItTogetherChap2() throws {
+	func _test_puttingItTogetherChap2() throws {
 		Exercise().chap2()
 //		Exercise().writeTest()
 	}

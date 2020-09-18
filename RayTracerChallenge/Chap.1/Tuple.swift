@@ -41,6 +41,15 @@ struct Tuple: CustomStringConvertible {
 			"[Tuple(\(type.toString))](x: \(x), y: \(y), z: \(z))"
 		}
 	}
+	
+	var toMatrix: Matrix {
+		var m = Matrix(4, 1)
+		m[0, 0] = x
+		m[1, 0] = y
+		m[2, 0] = z
+		m[3, 0] = w
+		return m
+	}
 }
 
 extension Tuple {
