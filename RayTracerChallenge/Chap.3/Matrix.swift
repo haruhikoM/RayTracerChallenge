@@ -15,23 +15,6 @@ struct Matrix {
 		(rows.count, rows.first!.count)
 	}
 	
-//	struct Row<T> {
-//		var columns: [T]
-//
-//		init(_ size: Int) {
-//			columns = Array(repeating: , count: size)
-//		}
-//
-//		subscript(_ index: Int) -> T {
-//			get {
-//				columns[index]
-//			}
-//			set {
-//				columns[index] = newValue
-//			}
-//		}
-//	}
-	
 	init(_ row: Int, _ column: Int, _ element: Float = 0.0) {
 		rows = Array(repeating: Array(repeating: element, count: column), count: row)
 	}

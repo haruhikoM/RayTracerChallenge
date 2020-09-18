@@ -21,13 +21,9 @@ struct Canvas {
 		\(width) \(height)
 		255
 		"""
-		
 		var body = "\n"
 		let perLineColorComponentsCountLimit = 17
-		
 		let bodyArray = createBodyArray()
-//		let perLineCount = bodyArray.count / Int(height)
-		
 		
 		func _composeBody() {
 			let perLineCount = bodyArray.count / Int(height)
@@ -37,49 +33,6 @@ struct Canvas {
 				if iterateCounter == perLineCount-1 {
 					body += "\n"
 					iterateCounter = 0
-				}
-				else {
-					body += " "
-					iterateCounter += 1
-				}
-			}
-		}
-		
-		
-
-		func __composeBody() {
-			var perLineCount = bodyArray.count / Int(height)
-			
-			var iterateCounter = 0
-			var isProcessingRemainder = false
-			let limitter = perLineCount > perLineColorComponentsCountLimit ? perLineColorComponentsCountLimit : perLineCount
-			let remains = perLineCount % perLineColorComponentsCountLimit
-			
-			var lineOverflow = Int(perLineCount / perLineColorComponentsCountLimit)-1
-			var lineFlag = perLineCount-1
-			
-			for component in bodyArray {
-				body += String(component)
-//
-//				if lineOverflow > 0 {
-					lineFlag = lineOverflow > 0 ? remains-1 : limitter-1
-//				}
-				if lineOverflow < 0 {
-					lineOverflow = Int(perLineCount / perLineColorComponentsCountLimit)-1
-				}
-				
-				if iterateCounter == lineFlag {
-					body += "\n"
-					iterateCounter = 0
-					lineOverflow -= 1
-//					if remains < perLineCount {
-//						isProcessingRemainder = false
-//						if perLineCount < 0 { perLineCount = bodyArray.count / Int(height); isProcessingRemainder = false }
-//					}
-//					else {
-//						perLineCount -= limitter
-//						if perLineCount < 0 { isProcessingRemainder = true }
-//					}
 				}
 				else {
 					body += " "
@@ -113,7 +66,7 @@ struct Canvas {
 				body += "\n"
 			}
 		}
-//		
+//
 //		body.removeLast()
 //		body += "\n"
 		
