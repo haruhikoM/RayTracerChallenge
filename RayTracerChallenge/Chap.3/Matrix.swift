@@ -44,12 +44,12 @@ struct Matrix {
 		}
 	}
 
-	subscript(_ rowIndex: Int, _ columnIndex: Int) -> Float {
+	subscript(_ rowIdx: Int, _ columnIdx: Int) -> Float {
 		get {
-			rows[rowIndex][columnIndex]
+			rows[rowIdx][columnIdx]
 		}
 		set {
-			rows[rowIndex][columnIndex] = newValue
+			rows[rowIdx][columnIdx] = newValue
 		}
 	}
 }
@@ -78,6 +78,18 @@ extension Matrix {
 		return Tuple(x: tempMatrix[0,0], y: tempMatrix[1,0], z: tempMatrix[2,0], w: tempMatrix[3,0])
 	}
 	
+	static func / (lhs: Matrix, rhs: Float) -> Matrix {
+		var mat = Matrix(lhs.size.0, lhs.size.1)
+		for rowIdx in 0..<lhs.size.0 {
+			for colIdx in 0..<lhs.size.1 {
+				mat[colIdx, rowIdx] = lhs[rowIdx, colIdx] / rhs
+			}
+		}
+		return mat
+	}
+}
+
+extension Matrix {
 	func transpose() -> Matrix {
 		var tempMat = Matrix(size.1, size.0)
 		for rowIdx in 0..<size.0 {
@@ -85,7 +97,59 @@ extension Matrix {
 				tempMat[colIdx, rowIdx] = self[rowIdx, colIdx]
 			}
 		}
+		// self = tempMat
 		return tempMat
+	}
+	
+	func determinant() -> Float {
+		if self.size == (2, 2) {
+			return self[0, 0] * self[1, 1] - self[0, 1] * self[1, 0]
+		}
+		else {
+			let rowIdx = 0
+			return rows[rowIdx].enumerated().map { $1 * cofactor(rowIdx, $0) }.reduce(0, +)
+		}
+	}
+	
+	func submatrix(_ row: Int, _ column: Int) -> Matrix {
+		var copy = self
+		copy.rows.remove(at: row)
+		for (idx,row) in copy.rows.enumerated() {
+			var rowCopy = row
+			rowCopy.remove(at: column)
+			copy.rows[idx] = rowCopy
+		}
+		return copy
+	}
+	
+	func minor(_ row: Int, _ column: Int) -> Float {
+		let sub = submatrix(row, column)
+		return sub.determinant()
+	}
+	
+	func cofactor(_ row: Int, _ column: Int) -> Float {
+		let minor = self.minor(row, column)
+		return (row+column).isEven ? -minor : minor
+	}
+	
+	func inverse() /*throws*/ -> Matrix {
+		// if !isInvertible { throw MatrixError.uninvertibleError }
+		assert(isInvertible)
+		
+		var mat = Matrix(size.0, size.1)
+		for rowIdx in 0..<size.0 {
+			for colIdx in 0..<size.1 {
+				 let cof = cofactor(rowIdx, colIdx)
+				mat[colIdx, rowIdx] = cof / determinant()
+			}
+		}
+		return mat
+	}
+	
+	var isInvertible: Bool { !(determinant() == 0) }
+	
+	enum MatrixError: Error {
+		case uninvertibleError
 	}
 }
 
@@ -96,17 +160,8 @@ extension Matrix: Equatable {
 			lhs.size.1 == rhs.size.1 else { return false }
 		
 		for (idx, lrow) in lhs.rows.enumerated() {
-			if lrow != rhs.rows[idx] { return false }
+			if !(lrow == rhs.rows[idx]) { return false }
 		}
-		
 		return true
 	}
 }
-
-extension Float {
-	var isInt: Bool {
-		!(abs(self) - Float(abs(Int(self))) > Float.epsilon)
-	}
-}
-
- 
