@@ -70,7 +70,7 @@ extension Exercise {
 		let start = Point(x: 0, y: 1, z: 0)
 		
 		let velocity = (Vector(x: 0.01, y: 0.018, z: 0)).normalizing() * 11.25
-		print(velocity)
+//		print(velocity)
 		var p = Projectile(position: start, velocity: velocity)
 		
 		let gravity = Vector(x: 0, y: -0.1, z: 0)
@@ -79,14 +79,14 @@ extension Exercise {
 		var c = Canvas(canvasWidth, canvasHeight)
 		
 		while p.position.y >= 0.0 {
-			print(p)
+//			print(p)
 			c.write(pixel: Color(r: 1, g: 0, b: 0), at: (Int(p.position.x), canvasHeight-Int(p.position.y)))
 			p = tick(env: e, proj: p)
 		}
-		save(text: c.toPPM, to: documentDirectory, withFileName: "RTC-Chap2-"+fmtr.string(from: Date())+".ppm")
+		save(text: c.toPPM, to: documentDirectory, named: "RTC-Chap2-"+fmtr.string(from: Date())+".ppm")
 	}
 
-	private func save(text: String, to directory: URL, withFileName fileName: String) {
+	private func save(text: String, to directory: URL, named fileName: String) {
 		let fileURL = directory.appendingPathComponent(fileName)
 		do {
 			try text.write(to: fileURL, atomically: true, encoding: .utf8)
@@ -96,5 +96,31 @@ extension Exercise {
 		}
 		
 		print("\n ### Save successful to -> \(fileURL)\n")
+	}
+}
+
+// Chapter 4
+extension Exercise {
+	func chap4() {
+		let width  = 100
+		let height = 100
+		let center = Point(Float(width)/2, Float(height)/2, 0)
+		var canvas = Canvas(width, height)
+		var points = Array(repeating: Point(0, 0, 1), count: 12)
+
+		for (idx, p) in points.enumerated() {
+			let t = Matrix.rotation(by: .y, radians: Float(idx) * Float.pi/6)
+			let td = t * p
+			let r = Float(height * 3/8)
+			points[idx] = Point(td.x * r+center.x, td.z * r+center.y, 0)
+			
+		}
+		
+		points.forEach { canvas.write(pixel: .red, at: (Int($0.x), Int($0.y))) }
+		save(text: canvas.toPPM, to: documentDirectory, named: fileName(chap: 4))
+	}
+	
+	func fileName(chap: Int) -> String {
+		"RTC-Chap\(chap)-" + fmtr.string(from: Date()) + ".ppm"
 	}
 }

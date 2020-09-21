@@ -38,7 +38,6 @@ struct Matrix {
 			let row = newArray[rowIdx].components(separatedBy: ",")
 			for columnIdx in 0..<size.1 {
 				let val = row[columnIdx]
-				print(val)
 				self[rowIdx, columnIdx] = Float(val)!
 			}
 		}
@@ -90,6 +89,16 @@ extension Matrix {
 }
 
 extension Matrix {
+	static var identity: Matrix {
+		Matrix(string: """
+		|1|0|0|0|
+		|0|1|0|0|
+		|0|0|1|0|
+		|0|0|0|1|
+		"""
+		)
+	}
+	
 	func transpose() -> Matrix {
 		var tempMat = Matrix(size.1, size.0)
 		for rowIdx in 0..<size.0 {

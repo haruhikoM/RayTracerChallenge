@@ -13,6 +13,8 @@
 		D753209B251322E40026EF13 /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = D753209A251322E40026EF13 /* Canvas.swift */; };
 		D753209D251388110026EF13 /* PuttingItTogether.swift in Sources */ = {isa = PBXBuildFile; fileRef = D753209C251388110026EF13 /* PuttingItTogether.swift */; };
 		D7644883251115060013E230 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7644882251115060013E230 /* Color.swift */; };
+		D77792372517499700CCD9FA /* TransformationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77792362517499700CCD9FA /* TransformationTests.swift */; };
+		D777923B25174A6500CCD9FA /* Transformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D777923A25174A6500CCD9FA /* Transformation.swift */; };
 		D7E0BF7C2510BC720044100B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E0BF7B2510BC720044100B /* AppDelegate.swift */; };
 		D7E0BF7E2510BC720044100B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E0BF7D2510BC720044100B /* ContentView.swift */; };
 		D7E0BF802510BC730044100B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7E0BF7F2510BC730044100B /* Assets.xcassets */; };
@@ -41,6 +43,8 @@
 		D753209A251322E40026EF13 /* Canvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Canvas.swift; sourceTree = "<group>"; };
 		D753209C251388110026EF13 /* PuttingItTogether.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PuttingItTogether.swift; sourceTree = "<group>"; };
 		D7644882251115060013E230 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		D77792362517499700CCD9FA /* TransformationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformationTests.swift; sourceTree = "<group>"; };
+		D777923A25174A6500CCD9FA /* Transformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transformation.swift; sourceTree = "<group>"; };
 		D7E0BF782510BC720044100B /* RayTracerChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RayTracerChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7E0BF7B2510BC720044100B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D7E0BF7D2510BC720044100B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -92,6 +96,14 @@
 			path = Chap.2;
 			sourceTree = "<group>";
 		};
+		D777922D251748DC00CCD9FA /* Chap.4 */ = {
+			isa = PBXGroup;
+			children = (
+				D777923A25174A6500CCD9FA /* Transformation.swift */,
+			);
+			path = Chap.4;
+			sourceTree = "<group>";
+		};
 		D7E0BF6F2510BC720044100B = {
 			isa = PBXGroup;
 			children = (
@@ -113,6 +125,8 @@
 		D7E0BF7A2510BC720044100B /* RayTracerChallenge */ = {
 			isa = PBXGroup;
 			children = (
+				D753209C251388110026EF13 /* PuttingItTogether.swift */,
+				D777922D251748DC00CCD9FA /* Chap.4 */,
 				D73740F2251491A900F9368E /* Chap.3 */,
 				D7644881251113AC0013E230 /* Chap.2 */,
 				D7E0BF9E2510BE4A0044100B /* Chap.1 */,
@@ -144,6 +158,7 @@
 				D7E0BF9C2510BCB20044100B /* TuplesTests.swift */,
 				D7532098251322870026EF13 /* CanvasTests.swift */,
 				D73740F0251490A600F9368E /* MatricesTests.swift */,
+				D77792362517499700CCD9FA /* TransformationTests.swift */,
 			);
 			path = RayTracerChallengeTests;
 			sourceTree = "<group>";
@@ -152,7 +167,6 @@
 			isa = PBXGroup;
 			children = (
 				D7E0BF9F2510BE5D0044100B /* Tuple.swift */,
-				D753209C251388110026EF13 /* PuttingItTogether.swift */,
 			);
 			path = Chap.1;
 			sourceTree = "<group>";
@@ -266,6 +280,7 @@
 				D7644883251115060013E230 /* Color.swift in Sources */,
 				D7E0BFA42510C5A00044100B /* Helpers.swift in Sources */,
 				D753209B251322E40026EF13 /* Canvas.swift in Sources */,
+				D777923B25174A6500CCD9FA /* Transformation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,6 +292,7 @@
 				D73740F1251490A600F9368E /* MatricesTests.swift in Sources */,
 				D7E0BF922510BC740044100B /* RayTracerChallengeTests.swift in Sources */,
 				D7532099251322870026EF13 /* CanvasTests.swift in Sources */,
+				D77792372517499700CCD9FA /* TransformationTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

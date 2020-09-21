@@ -485,7 +485,7 @@ class MatricesTests: XCTestCase {
 		XCTAssertEqual(aa, a.inverse())
 	}
 	
-	func test_MultiplyingAproductByItsInverse() throws {
+	func test_multiplyingProductByItsInverse() throws {
 		// Scenario: Multiplying a product by its inverse
 		// Given the following 4x4 matrix A:
 		let a = Matrix(string: """
@@ -507,7 +507,18 @@ class MatricesTests: XCTestCase {
 		XCTAssertEqual(a, c * b.inverse())
 	}
 	
-	
+	func test_identity() throws {
+		XCTAssertNotNil(Matrix.identity)
+		XCTAssertEqual(1, Matrix.identity[0,0])
+		XCTAssertEqual(1, Matrix.identity[1,1])
+		XCTAssertEqual(1, Matrix.identity[2,2])
+		XCTAssertEqual(1, Matrix.identity[3,3])
+		XCTAssertEqual(0, Matrix.identity[1,0])
+		XCTAssertEqual(0, Matrix.identity[2,1])
+		XCTAssertEqual(0, Matrix.identity[3,2])
+		XCTAssertEqual(0, Matrix.identity[2,3])
+	}
+
 	// Not used
 	func test_FloatFineCheck() throws {
 		var shouldNotBeConsideredAsInt: Float = 1.0001

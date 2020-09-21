@@ -15,6 +15,15 @@ protocol Tuplize {
 	var w: Float { get }
 }
 
+extension Tuple {
+	init(_ x: Float, _ y: Float, _ z: Float, _ w: Float) {
+		self.x = x
+		self.y = y
+		self.z = z
+		self.w = w
+	}
+}
+
 struct Tuple: CustomStringConvertible {
 	var x, y, z, w: Float
 	var type: Variant {
@@ -129,8 +138,24 @@ func Point(x: Float, y: Float, z: Float) -> Tuple {
 	Tuple(x: x, y: y, z: z, w: 1.0)
 }
 
+func Point(_ x: Float, _ y: Float, _ z: Float) -> Tuple {
+	Tuple(x: x, y: y, z: z, w: 1.0)
+}
+
+
+
+
 /// Vector -> a value that encoded DIRECTION and DISTANCE.
 /// The DISTANCE represented by a vector -> its MAGNITUDE or LENGTH
 func Vector(x: Float, y: Float, z: Float) -> Tuple {
 	Tuple(x: x, y: y, z: z, w: 0.0)
+}
+
+func Vector(_ x: Float, _ y: Float, _ z: Float) -> Tuple {
+	Tuple(x: x, y: y, z: z, w: 0.0)
+	
+}
+
+extension Tuple {
+	static let zero = Tuple(x: 0, y: 0, z: 0, w: 0)
 }
