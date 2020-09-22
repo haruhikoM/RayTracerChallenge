@@ -11,6 +11,8 @@
 		D72CDEFF2518C2250069D88C /* Ray.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72CDEFE2518C2250069D88C /* Ray.swift */; };
 		D72CDF032518D5CD0069D88C /* Sphere.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72CDF022518D5CD0069D88C /* Sphere.swift */; };
 		D72CDF072518D60D0069D88C /* SphereTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72CDF062518D60D0069D88C /* SphereTests.swift */; };
+		D72CDF0B251A04490069D88C /* IntersectionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72CDF0A251A04490069D88C /* IntersectionsTests.swift */; };
+		D72CDF0F251A05240069D88C /* Intersection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72CDF0E251A05240069D88C /* Intersection.swift */; };
 		D73740F1251490A600F9368E /* MatricesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73740F0251490A600F9368E /* MatricesTests.swift */; };
 		D73740F4251491BA00F9368E /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73740F3251491BA00F9368E /* Matrix.swift */; };
 		D7532099251322870026EF13 /* CanvasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7532098251322870026EF13 /* CanvasTests.swift */; };
@@ -45,6 +47,8 @@
 		D72CDEFE2518C2250069D88C /* Ray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ray.swift; sourceTree = "<group>"; };
 		D72CDF022518D5CD0069D88C /* Sphere.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sphere.swift; sourceTree = "<group>"; };
 		D72CDF062518D60D0069D88C /* SphereTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SphereTests.swift; sourceTree = "<group>"; };
+		D72CDF0A251A04490069D88C /* IntersectionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntersectionsTests.swift; sourceTree = "<group>"; };
+		D72CDF0E251A05240069D88C /* Intersection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Intersection.swift; sourceTree = "<group>"; };
 		D73740F0251490A600F9368E /* MatricesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatricesTests.swift; sourceTree = "<group>"; };
 		D73740F3251491BA00F9368E /* Matrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matrix.swift; sourceTree = "<group>"; };
 		D7532098251322870026EF13 /* CanvasTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasTests.swift; sourceTree = "<group>"; };
@@ -92,6 +96,7 @@
 			children = (
 				D72CDEFE2518C2250069D88C /* Ray.swift */,
 				D72CDF022518D5CD0069D88C /* Sphere.swift */,
+				D72CDF0E251A05240069D88C /* Intersection.swift */,
 			);
 			path = Chqp.5;
 			sourceTree = "<group>";
@@ -142,8 +147,8 @@
 		D7E0BF7A2510BC720044100B /* RayTracerChallenge */ = {
 			isa = PBXGroup;
 			children = (
-				D72CDEF72518C0FF0069D88C /* Chqp.5 */,
 				D753209C251388110026EF13 /* PuttingItTogether.swift */,
+				D72CDEF72518C0FF0069D88C /* Chqp.5 */,
 				D777922D251748DC00CCD9FA /* Chap.4 */,
 				D73740F2251491A900F9368E /* Chap.3 */,
 				D7644881251113AC0013E230 /* Chap.2 */,
@@ -179,6 +184,7 @@
 				D77792362517499700CCD9FA /* TransformationTests.swift */,
 				D72CDEF82518C1880069D88C /* RaysTests.swift */,
 				D72CDF062518D60D0069D88C /* SphereTests.swift */,
+				D72CDF0A251A04490069D88C /* IntersectionsTests.swift */,
 			);
 			path = RayTracerChallengeTests;
 			sourceTree = "<group>";
@@ -292,6 +298,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D72CDF0F251A05240069D88C /* Intersection.swift in Sources */,
 				D7E0BF7E2510BC720044100B /* ContentView.swift in Sources */,
 				D7E0BFA02510BE5D0044100B /* Tuple.swift in Sources */,
 				D753209D251388110026EF13 /* PuttingItTogether.swift in Sources */,
@@ -310,6 +317,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D72CDF0B251A04490069D88C /* IntersectionsTests.swift in Sources */,
 				D7E0BF9D2510BCB20044100B /* TuplesTests.swift in Sources */,
 				D73740F1251490A600F9368E /* MatricesTests.swift in Sources */,
 				D72CDF072518D60D0069D88C /* SphereTests.swift in Sources */,

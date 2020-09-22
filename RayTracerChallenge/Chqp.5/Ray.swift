@@ -17,21 +17,21 @@ struct Ray {
 	}
 }
 
-typealias IntersectType = [Float]
+//typealias IntersectionType = [Float]
 extension Ray {
-	func intersects(_ sphere: Sphere) -> IntersectType {
+	func intersects<T>(_ object: T) -> Intersection<T> {
 		let sphereToRay = origin - Point(0, 0, 0)//<-sphere's origin
 		let a = direction.dot(direction)
 		let b = 2 * direction.dot(sphereToRay)
 		let c = sphereToRay.dot(sphereToRay) - 1
 		let discriminant = pow(b, 2) - 4 * a * c
 		if discriminant < 0 {
-			return []
+			return .none
 		}
 		else {
 			let t1 = (-b - sqrt(discriminant)) / (2 * a)
 			let t2 = (-b + sqrt(discriminant)) / (2 * a)
-			return [t1, t2]
+			return .multi([.one(t1, object), .one(t2, object)])
 		}
 	}
 }
