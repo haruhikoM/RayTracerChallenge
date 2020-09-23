@@ -124,3 +124,91 @@ extension Exercise {
 		"RTC-Chap\(chap)-" + fmtr.string(from: Date()) + ".ppm"
 	}
 }
+
+extension Exercise {
+	// 1. casts ray at sphere
+	// 2. and draw the picture to a canvas
+	
+	func chap5() {
+		let width  = 100
+		let height = 100
+//		let center = Point(Float(width)/2, Float(height)/2, 0)
+		var c = Canvas(width, height)
+		
+		// hint:2, 3, 4
+		let wallZ: Float = 10.0
+		let wallSize: Float = 7.0
+		let half = wallSize / 2
+		
+		let pixelSize = wallSize / Float(width)
+		
+		let rayOrigin = Point(0,0,-5)
+		let s = Sphere()
+		for y in 0..<height {
+			let worldY = half - pixelSize * Float(y)
+			for x in 0..<width {
+				let worldX = -half + pixelSize * Float(x)
+				let pos = Point(worldX, worldY, wallZ)
+				let d = pos - rayOrigin
+				let r = Ray(rayOrigin, d.normalizing())
+				let xs = r.intersects(s)
+				
+				switch xs.hit() {
+//				case .multi(_):
+//					c.write(pixel: .red, at: (x, y))
+				case .one(_, _):
+					c.write(pixel: .red, at: (x, y))
+				default:
+					continue
+				}
+				
+			}
+		}
+		save(text: c.toPPM, to: documentDirectory, named: fileName(chap: 5))
+	}
+	
+	func chap6() {
+		let canvasSize = 300
+		var c = Canvas(canvasSize, canvasSize)
+		
+		let wallZ: Float = 10.0
+		let wallSize: Float = 7.0
+		let half = wallSize / 2
+		
+		let pixelSize = wallSize / Float(canvasSize)
+		
+		let rayOrigin = Point(0,0,-5)
+		let s = Sphere(material: Material(color: Color(r: 1, g: 0.2, b: 1)))
+		
+		// Add light source
+		let lightPosition = Point(-10, 10, -10)
+		let lightColor = Color.white
+		let light = PointLight(lightPosition, lightColor)
+		
+		for y in 0..<canvasSize {
+			let worldY = half - pixelSize * Float(y)
+			for x in 0..<canvasSize {
+				let worldX = -half + pixelSize * Float(x)
+				let pos = Point(worldX, worldY, wallZ)
+				let d = pos - rayOrigin
+				let r = Ray(rayOrigin, d.normalizing())
+				let xs = r.intersects(s)
+				
+				switch xs.hit() {
+				//				case .multi(_):
+				//					c.write(pixel: .red, at: (x, y))
+				case let .one(t, obj):
+					let point = r.position(t)
+					let normal = obj.normal(at: point)
+					let eye = -r.direction
+					let color = obj.material.lighting(light: light, point: point, eyeVector: eye, normalVector: normal)
+					c.write(pixel: color, at: (x, y))
+				default:
+					continue
+				}
+				
+			}
+		}
+		save(text: c.toPPM, to: documentDirectory, named: fileName(chap: 5))
+	}
+}

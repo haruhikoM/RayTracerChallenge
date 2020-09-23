@@ -13,6 +13,10 @@
 		D72CDF072518D60D0069D88C /* SphereTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72CDF062518D60D0069D88C /* SphereTests.swift */; };
 		D72CDF0B251A04490069D88C /* IntersectionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72CDF0A251A04490069D88C /* IntersectionsTests.swift */; };
 		D72CDF0F251A05240069D88C /* Intersection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72CDF0E251A05240069D88C /* Intersection.swift */; };
+		D72CDF1A251BAE510069D88C /* LightTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72CDF19251BAE510069D88C /* LightTests.swift */; };
+		D72CDF1E251BAF110069D88C /* Light.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72CDF1D251BAF110069D88C /* Light.swift */; };
+		D72CDF22251BAF8F0069D88C /* MaterialsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72CDF21251BAF8F0069D88C /* MaterialsTests.swift */; };
+		D72CDF26251BAFBB0069D88C /* Material.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72CDF25251BAFBB0069D88C /* Material.swift */; };
 		D73740F1251490A600F9368E /* MatricesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73740F0251490A600F9368E /* MatricesTests.swift */; };
 		D73740F4251491BA00F9368E /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73740F3251491BA00F9368E /* Matrix.swift */; };
 		D7532099251322870026EF13 /* CanvasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7532098251322870026EF13 /* CanvasTests.swift */; };
@@ -49,6 +53,10 @@
 		D72CDF062518D60D0069D88C /* SphereTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SphereTests.swift; sourceTree = "<group>"; };
 		D72CDF0A251A04490069D88C /* IntersectionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntersectionsTests.swift; sourceTree = "<group>"; };
 		D72CDF0E251A05240069D88C /* Intersection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Intersection.swift; sourceTree = "<group>"; };
+		D72CDF19251BAE510069D88C /* LightTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightTests.swift; sourceTree = "<group>"; };
+		D72CDF1D251BAF110069D88C /* Light.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Light.swift; sourceTree = "<group>"; };
+		D72CDF21251BAF8F0069D88C /* MaterialsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialsTests.swift; sourceTree = "<group>"; };
+		D72CDF25251BAFBB0069D88C /* Material.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Material.swift; sourceTree = "<group>"; };
 		D73740F0251490A600F9368E /* MatricesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatricesTests.swift; sourceTree = "<group>"; };
 		D73740F3251491BA00F9368E /* Matrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matrix.swift; sourceTree = "<group>"; };
 		D7532098251322870026EF13 /* CanvasTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasTests.swift; sourceTree = "<group>"; };
@@ -101,6 +109,15 @@
 			path = Chqp.5;
 			sourceTree = "<group>";
 		};
+		D72CDF14251B3CAF0069D88C /* Chap.6 */ = {
+			isa = PBXGroup;
+			children = (
+				D72CDF1D251BAF110069D88C /* Light.swift */,
+				D72CDF25251BAFBB0069D88C /* Material.swift */,
+			);
+			path = Chap.6;
+			sourceTree = "<group>";
+		};
 		D73740F2251491A900F9368E /* Chap.3 */ = {
 			isa = PBXGroup;
 			children = (
@@ -148,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				D753209C251388110026EF13 /* PuttingItTogether.swift */,
+				D72CDF14251B3CAF0069D88C /* Chap.6 */,
 				D72CDEF72518C0FF0069D88C /* Chqp.5 */,
 				D777922D251748DC00CCD9FA /* Chap.4 */,
 				D73740F2251491A900F9368E /* Chap.3 */,
@@ -185,6 +203,8 @@
 				D72CDEF82518C1880069D88C /* RaysTests.swift */,
 				D72CDF062518D60D0069D88C /* SphereTests.swift */,
 				D72CDF0A251A04490069D88C /* IntersectionsTests.swift */,
+				D72CDF19251BAE510069D88C /* LightTests.swift */,
+				D72CDF21251BAF8F0069D88C /* MaterialsTests.swift */,
 			);
 			path = RayTracerChallengeTests;
 			sourceTree = "<group>";
@@ -298,9 +318,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D72CDF26251BAFBB0069D88C /* Material.swift in Sources */,
 				D72CDF0F251A05240069D88C /* Intersection.swift in Sources */,
 				D7E0BF7E2510BC720044100B /* ContentView.swift in Sources */,
 				D7E0BFA02510BE5D0044100B /* Tuple.swift in Sources */,
+				D72CDF1E251BAF110069D88C /* Light.swift in Sources */,
 				D753209D251388110026EF13 /* PuttingItTogether.swift in Sources */,
 				D7E0BF7C2510BC720044100B /* AppDelegate.swift in Sources */,
 				D72CDEFF2518C2250069D88C /* Ray.swift in Sources */,
@@ -322,8 +344,10 @@
 				D73740F1251490A600F9368E /* MatricesTests.swift in Sources */,
 				D72CDF072518D60D0069D88C /* SphereTests.swift in Sources */,
 				D7E0BF922510BC740044100B /* RayTracerChallengeTests.swift in Sources */,
+				D72CDF1A251BAE510069D88C /* LightTests.swift in Sources */,
 				D7532099251322870026EF13 /* CanvasTests.swift in Sources */,
 				D72CDEF92518C1880069D88C /* RaysTests.swift in Sources */,
+				D72CDF22251BAF8F0069D88C /* MaterialsTests.swift in Sources */,
 				D77792372517499700CCD9FA /* TransformationTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

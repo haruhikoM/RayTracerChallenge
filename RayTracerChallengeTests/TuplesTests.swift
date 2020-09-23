@@ -313,7 +313,7 @@ class TuplesTests: XCTestCase {
 		XCTAssertEqual(Color(r: 0.9, g: 0.2, b: 0.04), c1 * c2)
 	}
 	
-	func test_toTuple() throws {
+	func test_toMatrix() throws {
 		let cts = Tuple(x: 1, y: 2, z: 3, w: 1)
 		let mat = cts.toMatrix
 		XCTAssertEqual(1, mat[0, 0])
@@ -322,10 +322,18 @@ class TuplesTests: XCTestCase {
 		XCTAssertEqual(1, mat[3, 0])
 	}
 	
-	func testPuttingItToghether() throws {
-//		self.measure {
-//			Exercise().chap1()
-//		}
+	//MARK: - Chap 6
+	func test_reflectingVectorApproachingAt45degree() throws {
+		let v = Vector(1, -1, 0)
+		let n = Vector(0, 1, 0)
+		let r = v.reflect(n)
+		XCTAssertEqual(Vector(1,1,0), r)
 	}
 	
+	func test_reflectingOffSlantedSurface() throws {
+		let v = Vector(0, -1, 0)
+		let n = Vector(sqrt(2)/2, sqrt(2)/2, 0)
+		let r = v.reflect(n)
+		XCTAssertEqual(Vector(1,0,0), r)
+	}
 }

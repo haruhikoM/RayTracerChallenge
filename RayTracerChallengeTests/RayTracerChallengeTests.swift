@@ -10,25 +10,13 @@ import XCTest
 @testable import RayTracerChallenge
 
 class RayTracerChallengeTests: XCTestCase {
-
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-
+	var e = Exercise()
+	
+	func _test_chap1() throws {	e.chap1() }
+	func _test_chap2() throws {	e.chap2() }
+//	func _test_chap3() throws {	e.chap3() }
+	func _test_chap4() throws {	e.chap4() }
+	func _test_chap5() throws {	e.chap5() }
+	func _test_chap6() throws {	e.chap6() }
+	
 }

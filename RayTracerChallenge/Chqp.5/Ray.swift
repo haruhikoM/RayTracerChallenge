@@ -19,10 +19,11 @@ struct Ray {
 
 //typealias IntersectionType = [Float]
 extension Ray {
-	func intersects<T>(_ object: T) -> Intersection<T> {
-		let sphereToRay = origin - Point(0, 0, 0)//<-sphere's origin
-		let a = direction.dot(direction)
-		let b = 2 * direction.dot(sphereToRay)
+	func intersects<T: Transformable>(_ object: T) -> Intersection<T> {
+		let ray2 = transform(Matrix.inverse(object.transform)())
+		let sphereToRay = ray2.origin - Point(0, 0, 0)//<-sphere's origin
+		let a = ray2.direction.dot(ray2.direction)
+		let b = 2 * ray2.direction.dot(sphereToRay)
 		let c = sphereToRay.dot(sphereToRay) - 1
 		let discriminant = pow(b, 2) - 4 * a * c
 		if discriminant < 0 {

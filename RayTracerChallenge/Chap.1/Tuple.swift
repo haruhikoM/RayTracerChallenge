@@ -96,6 +96,11 @@ extension Tuple {
 			z: x*other.y - y*other.x
 		)
 	}
+	
+	// Chapter6
+	func reflect(_ normal: Tuple) -> Tuple { // Vector, Vector
+		self -  normal * 2 * self.dot(normal)
+	}
 }
 
 extension Tuple {

@@ -213,10 +213,5 @@ class TransformationTests: XCTestCase {
 			.translate(10, 5, 7)
 		
 		XCTAssertNotNil(transform)
-		
-	}
-	
-	func test_exercise() throws {
-		Exercise().chap4()
 	}
 }

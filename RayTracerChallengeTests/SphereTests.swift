@@ -11,6 +11,7 @@ import XCTest
 
 class SphereTests: XCTestCase {
 	var cts: Sphere!
+	
     override func setUpWithError() throws {
 		cts = Sphere()
 	}
@@ -77,5 +78,75 @@ class SphereTests: XCTestCase {
 		XCTAssertEqual(2, xs.count)
 		XCTAssertEqual(cts, xs[0].object)
 		XCTAssertEqual(cts, xs[1].object)
+	}
+	
+	func test_defaultTransformation() throws {
+		XCTAssertEqual(Matrix.identity, cts.transform)
+	}
+	
+	func test_changingTransformation() throws {
+		let t = Matrix.translation(2, 3, 4)
+		cts.transform = t
+		XCTAssertEqual(t, cts.transform)
+	}
+	
+	func test_intersectingAScaledSphereWithRay() throws {
+		let r = Ray(Point(0,0,-5), Vector(0,0,1))
+		cts.transform = Matrix.scaling(2, 2, 2)
+		var xs = r.intersects(cts)
+		XCTAssertEqual(2, xs.count)
+		XCTAssertEqual(3, xs[0].t)
+		XCTAssertEqual(7, xs[1].t)
+		
+		// Intersecting a translated sphere with a ray
+		cts.transform = Matrix.translation(5, 0, 0)
+		xs = r.intersects(cts)
+		XCTAssertEqual(0, xs.count)
+	}
+	
+	//MARK: - Chapter 6
+	func test_normalPointsToXYZAxes() throws {
+		// x axis
+		var n = cts.normal(at: Point(1,0,0))
+		XCTAssertEqual(Vector(1,0,0), n)
+		
+		// y axis
+		n = cts.normal(at: Point(0,1,0))
+		XCTAssertEqual(Vector(0,1,0), n)
+		
+		// z axis
+		n = cts.normal(at: Point(0,0,1))
+		XCTAssertEqual(Vector(0,0,1), n)
+		
+		// nonaxial point
+		n = cts.normal(at: Point(sqrt(3)/3,sqrt(3)/3,sqrt(3)/3))
+		XCTAssertEqual(Vector(sqrt(3)/3,sqrt(3)/3,sqrt(3)/3), n)
+		
+		// normal is always normalized
+		n = cts.normal(at: Point(sqrt(3)/3,sqrt(3)/3,sqrt(3)/3))
+		XCTAssertEqual(n.normalizing(), n)
+	}
+	
+	func test_computingNormalOnTranslatedSphere() throws {
+		cts.transform = Matrix.translation(0, 1, 0	)
+		var n = cts.normal(at: Point(0, 1.70711, -0.70711))
+		XCTAssertEqual(Vector(0, 0.70711, -0.70711), n)
+		
+		let m = Matrix.scaling(1, 0.5, 1) * Matrix.rotation(by: .z, radians: Float.pi/5)
+		cts.transform = m
+		n = cts.normal(at: Point(0,	sqrt(2)/2, -sqrt(2)/2))
+		XCTAssertEqual(Vector(0, 0.97014, -0.24254), n)
+	}
+	
+	func test_hasDefaultMaterial() throws {
+		let m = cts.material
+		XCTAssertEqual(m, Material())
+	}
+	
+	func test_mayBeAssignedMaterial() throws {
+		var m = Material()
+		m.ambient = 1
+		cts.material = m
+		XCTAssertEqual(m, cts.material)
 	}
 }
