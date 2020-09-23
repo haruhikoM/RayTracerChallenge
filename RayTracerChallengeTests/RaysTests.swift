@@ -51,4 +51,20 @@ class RaysTests: XCTestCase {
 		XCTAssertEqual(Point(1,3,4), r.position(-1))
 		XCTAssertEqual(Point(4.5,3,4), r.position(2.5))
 	}
+	
+	func test_translating() throws {
+		cts = Ray(Point(1,2,3), Vector(0,1,0))
+		let m = Matrix.translation(3, 4, 5)
+		let r2 = cts.transform(m)
+		XCTAssertEqual(Point(4, 6, 8),  r2.origin)
+		XCTAssertEqual(Vector(0, 1, 0), r2.direction)
+	}
+	
+	func test_scaling() throws {
+		cts = Ray(Point(1,2,3), Vector(0,1,0))
+		let m = Matrix.scaling(2, 3, 4)
+		let r2 = cts.transform(m)
+		XCTAssertEqual(Point(2, 6, 12),  r2.origin)
+		XCTAssertEqual(Vector(0, 3, 0), r2.direction)
+	}
 }

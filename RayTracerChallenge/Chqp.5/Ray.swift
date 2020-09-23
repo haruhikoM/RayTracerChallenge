@@ -34,6 +34,12 @@ extension Ray {
 			return .multi([.one(t1, object), .one(t2, object)])
 		}
 	}
+	
+	func transform(_ m: Matrix) -> Ray {
+		let p = m * origin
+		let d = m * direction
+		return Ray(p, d)
+	}
 }
 
 extension Ray {

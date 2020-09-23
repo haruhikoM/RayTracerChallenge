@@ -63,7 +63,7 @@ class IntersectionsTests: XCTestCase {
 		i2 = Intersection(7, s)
 		let i3 = Intersection(-3, s)
 		let i4 = Intersection(2, s)
-		xs = Intersection([i1, i2, i3, i4])
+		xs = Intersection(i1, i2, i3, i4)
 		i = xs.hit()
 		XCTAssertEqual(i4, i)
 	}

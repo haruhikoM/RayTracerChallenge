@@ -21,10 +21,10 @@ enum Intersection<U: Identifiable>: Equatable {
 	init(_ t: Float, _ object: U) {
 		self = .one(t, object)
 	}
-	init(_ i1: Intersection, _ i2: Intersection) {
-		self = .multi([i1, i2])
-	}
-	init(_ intersections: [Intersection]) {
+//	init(_ i1: Intersection, _ i2: Intersection) {
+//		self = .multi([i1, i2])
+//	}
+	init(_ intersections: Intersection...) {
 		self = .multi(intersections)
 	}
 
