@@ -24,18 +24,6 @@ class Sphere: SceneObject {
 	}
 }
 
-extension Sphere {
-	func normal(at worldPoint: Tuple) -> Tuple { /*Point, Vector*/
-		assert(worldPoint.type == .point)
-		
-		let objectPoint = transform.inverse() * worldPoint
-		let objectNormal = objectPoint - Point(0, 0, 0)
-		var worldNormal = transform.inverse().transpose() * objectNormal
-		worldNormal.w = 0
-		return worldNormal.normalizing() //Vector(point.x, point.y, point.z)
-	}
-}
-
 class SceneObject: Identifiable {
 	let id: UUID = UUID()
 	var transform: Matrix
@@ -52,3 +40,16 @@ extension SceneObject: Equatable {
 		lhs.id == rhs.id
 	}
 }
+
+extension SceneObject {
+	func normal(at worldPoint: Tuple) -> Tuple { /*Point, Vector*/
+		assert(worldPoint.type == .point)
+		
+		let objectPoint = transform.inverse() * worldPoint
+		let objectNormal = objectPoint - Point(0, 0, 0)
+		var worldNormal = transform.inverse().transpose() * objectNormal
+		worldNormal.w = 0
+		return worldNormal.normalizing() //Vector(point.x, point.y, point.z)
+	}
+}
+

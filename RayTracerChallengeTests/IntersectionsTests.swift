@@ -67,4 +67,36 @@ class IntersectionsTests: XCTestCase {
 		i = xs.hit()
 		XCTAssertEqual(i4, i)
 	}
+	
+	// Chap7
+	func test_precomputingTheState() throws {
+		let r = Ray(Point(0,0,-5), Vector(0,0,1))
+		let shape = Sphere()
+		let i = Intersection<SceneObject>(4, shape)
+		guard let comps = Computation.prepare(i,r) else { XCTFail(); return }
+		XCTAssertEqual(comps.t, i.t)
+		XCTAssertEqual(comps.object, i.object)
+		XCTAssertEqual(comps.point , Point(0, 0, -1))
+		XCTAssertEqual(comps.eyeVector, Vector(0, 0, -1))
+		XCTAssertEqual(comps.normalVector, Vector(0, 0, -1))
+	}
+	
+	func test_hitOccursOnTheOutside() throws {
+		let r = Ray(Point(0,0,-5), Vector(0,0,1))
+		let shape = Sphere()
+		let i = Intersection<SceneObject>(4, shape)
+		guard let comps = Computation.prepare(i,r) else { XCTFail(); return }
+		XCTAssertEqual(comps.inside, false)
+	}
+	
+	func test_hitOccursOnTheInside() throws {
+		let r = Ray(Point(0,0,0), Vector(0,0,1))
+		let shape = Sphere()
+		let i = Intersection<SceneObject>(1, shape)
+		guard let comps = Computation.prepare(i,r) else { XCTFail(); return }
+		XCTAssertEqual(comps.inside, true)
+		XCTAssertEqual(comps.point , Point(0, 0, 1))
+		XCTAssertEqual(comps.eyeVector, Vector(0, 0, -1))
+		XCTAssertEqual(comps.normalVector, Vector(0, 0, -1))
+	}
 }

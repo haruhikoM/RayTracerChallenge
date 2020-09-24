@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		D701DC67251C74460027FF17 /* WorldTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D701DC66251C74460027FF17 /* WorldTests.swift */; };
 		D701DC6D251C74EC0027FF17 /* World.swift in Sources */ = {isa = PBXBuildFile; fileRef = D701DC6C251C74EC0027FF17 /* World.swift */; };
+		D701DC71251CB36A0027FF17 /* Computation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D701DC70251CB36A0027FF17 /* Computation.swift */; };
 		D72CDEF92518C1880069D88C /* RaysTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72CDEF82518C1880069D88C /* RaysTests.swift */; };
 		D72CDEFF2518C2250069D88C /* Ray.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72CDEFE2518C2250069D88C /* Ray.swift */; };
 		D72CDF032518D5CD0069D88C /* Sphere.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72CDF022518D5CD0069D88C /* Sphere.swift */; };
@@ -51,6 +52,7 @@
 /* Begin PBXFileReference section */
 		D701DC66251C74460027FF17 /* WorldTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldTests.swift; sourceTree = "<group>"; };
 		D701DC6C251C74EC0027FF17 /* World.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = World.swift; sourceTree = "<group>"; };
+		D701DC70251CB36A0027FF17 /* Computation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Computation.swift; sourceTree = "<group>"; };
 		D72CDEF82518C1880069D88C /* RaysTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaysTests.swift; sourceTree = "<group>"; };
 		D72CDEFE2518C2250069D88C /* Ray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ray.swift; sourceTree = "<group>"; };
 		D72CDF022518D5CD0069D88C /* Sphere.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sphere.swift; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				D701DC6C251C74EC0027FF17 /* World.swift */,
+				D701DC70251CB36A0027FF17 /* Computation.swift */,
 			);
 			path = Chap.7;
 			sourceTree = "<group>";
@@ -347,6 +350,7 @@
 				D7E0BFA42510C5A00044100B /* Helpers.swift in Sources */,
 				D753209B251322E40026EF13 /* Canvas.swift in Sources */,
 				D777923B25174A6500CCD9FA /* Transformation.swift in Sources */,
+				D701DC71251CB36A0027FF17 /* Computation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

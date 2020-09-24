@@ -14,20 +14,46 @@ struct World {
 }
 
 extension World {
-	func intersects(_ ray: Ray) -> [Intersection<SceneObject>] {
+	func intersects(_ ray: Ray) -> Intersection<SceneObject> {
 		let arr = scene.map { ray.intersects($0) }
-		var result = [Intersection<SceneObject>]()
+		var result = Intersection<SceneObject>.none
 		for ix in arr {
 			switch ix {
+			case .one(_,_): result.add(ix)
 			case let .multi(xs):
-				result += xs.map { $0 }
+				xs.forEach { result.add($0) }
 			default:
 				continue
 			}
 		}
-		return result.sorted { $0.t! < $1.t! }
+		return result.sort()
 	}
 	
+	func shadeHit(_ comps: Computation) -> Color {
+		return comps.object.material.lighting(
+										light: light,
+										point: comps.point,
+										eyeVector: comps.eyeVector,
+										normalVector: comps.normalVector
+										)
+	}
+	
+	
+	func color(at r: Ray) -> Color {
+		let intersect = intersects(r)
+		let hit = intersect.hit()
+		
+		switch hit {
+		case .none: return .black
+		case .one(_, _):
+			if let comps = Computation.prepare(intersect, r) {
+				return shadeHit(comps)
+			}
+			fatalError()
+		case .multi(_):
+			fatalError()
+		}
+	}
 	
 	//
 	// It looks like this can't be done simply searching
@@ -35,8 +61,7 @@ extension World {
 	//
 	func contains(identicalTo s: SceneObject) -> Bool {
 		scene.contains {
-			$0.material == s.material &&
-			$0.transform == s.transform
+			$0.material == s.material && $0.transform == s.transform
 		}
 	}
 	

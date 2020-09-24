@@ -8,24 +8,21 @@
 
 import Foundation
 
-//func intersection(_ t: Float, _ s: Sphere) -> IntersectionType {
-//
-//}
-
 enum Intersection<U: Identifiable>: Equatable {
 	case none
 	case one(_ t: Float, _ object: U)
-//	indirect case two(_ i1: Intersection, _ i2: Intersection)
 	indirect case multi([Intersection])
 
 	init(_ t: Float, _ object: U) {
 		self = .one(t, object)
 	}
-//	init(_ i1: Intersection, _ i2: Intersection) {
-//		self = .multi([i1, i2])
-//	}
+
 	init(_ intersections: Intersection...) {
 		self = .multi(intersections)
+	}
+	
+	init(_ intersectionArray: [Intersection]) {
+		self = .multi(intersectionArray)
 	}
 
 	subscript(_ idx: Int) -> Intersection {
@@ -41,12 +38,29 @@ enum Intersection<U: Identifiable>: Equatable {
 		case (.none, .none): return true
 		case let (.one(t1, o1), .one(t2, o2)):
 			return t1 == t2 && o1.id == o2.id
-//		case let (.two(i1, i2), .two(i3, i4)):
-//			return i1 == i3 && i2 == i4
 		case (.multi, .multi):
 			fatalError("Have not implemented yet")
 		default:
 			return false
+		}
+	}
+	
+	mutating func add(_ intersection: Intersection) {
+		switch self {
+		case .none: self = intersection
+		case .one(_,_): self = .multi([self, intersection])
+		case let .multi(xs):
+			var muteXS = xs
+			muteXS.append(intersection)
+			self = .multi(muteXS)
+		}
+	}
+	
+	func sort() -> Intersection {
+		switch self {
+		case .one(_,_): return self
+		case let .multi(xs): return Intersection(xs.sorted(by: { $0.t! < $1.t! }))
+		case .none: return self
 		}
 	}
 }
@@ -80,9 +94,7 @@ extension Intersection {
 extension Intersection {
 	func hit() -> Intersection {
 		switch self {
-//		case let .two(i1, i2):
-//			guard i1.t! > 0 || i2.t! > 0 else { return .none }
-//			return i1.t! > i2.t! ? i1 : i2
+		case .one(_, _): return self
 		case let .multi(xs):
 			return xs.filter { $0.t! > 0 }.sorted(by: { $0.t! < $1.t! } ).first ?? .none
 		default:
@@ -90,18 +102,3 @@ extension Intersection {
 		}
 	}
 }
-
-
-//
-//
-//enum _Tuple {
-//	case point
-//	case vector
-//	case tuple
-//}
-
-//enum Intersection<T, U> {
-//	case none
-//	case single(T, U)
-//	indirect case multi(Intersection<T, U>, Intersection<T, U>)
-//}

@@ -45,10 +45,48 @@ class WorldTests: XCTestCase {
 		XCTAssertEqual(xs[1].t, 4.5)
 		XCTAssertEqual(xs[2].t, 5.5)
 		XCTAssertEqual(xs[3].t, 6)
-
+	}
+	
+	func test_shadingAnIntersection() throws {
+		let r = Ray(Point(0,0,-5), Vector(0,0,1))
+		let shape = cts.scene.first!
+		let i = Intersection(4, shape)
+		guard let comps = Computation.prepare(i, r) else { XCTFail(); return }
+		let c = cts.shadeHit(comps)
+		XCTAssertEqual(Color(r: 0.38066, g: 0.47583, b: 0.2855), c)
+	}
+	
+	func test_shadingAnIntersectionFromInside() throws {
+		cts.light = PointLight(Point(0,0.25,0), .white)
+		let r = Ray(Point(0,0,0), Vector(0,0,1))
+		let shape = cts.scene[1]
+		let i = Intersection(0.5, shape)
+		guard let comps = Computation.prepare(i, r) else { XCTFail(); return }
+		let c = cts.shadeHit(comps)
+		XCTAssertEqual(Color(r: 0.90498, g: 0.90498, b: 0.90498), c)
+	}
+	
+	func test_theColorWhenRayMisses() throws {
+		let r = Ray(Point(0,0,-5), Vector(0, 1, 0))
+		let c = cts.color(at: r)
+		XCTAssertEqual(c, Color.black)
+	}
+	
+	func test_theColorWhenRayHits() throws {
+		let r = Ray(Point(0,0,-5), Vector(0, 0, 1))
+		let c = cts.color(at: r)
+		XCTAssertEqual(c, Color(r: 0.38066, g: 0.47583, b: 0.2855))
+	}
+	
+	func test_theColorWithIntresectionBehindTheRay() throws {
+		let outer = cts.scene.first!
+		outer.material.ambient = 1
 		
+		let inner = cts.scene[1]
+		inner.material.ambient = 1
 		
-		
-		
+		let r =	Ray(Point(0,0,0.75), Vector(0,0,-1))
+		let c = cts.color(at: r)
+		XCTAssertEqual(c, inner.material.color)
 	}
 }
