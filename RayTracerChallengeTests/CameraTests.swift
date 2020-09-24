@@ -29,4 +29,20 @@ class CameraTests: XCTestCase {
 		XCTAssertEqual(cts.fieldOfView, Float.pi/2)
 		XCTAssertEqual(cts.transform, Matrix.identity)
 	}
+	
+	func test_pixelSizeForHCanvas() throws {
+		let hSize = 200
+		let vSize = 125
+		let fieldOfView = Float.pi/2
+		cts = Camera(hSize, vSize, fieldOfView)
+		XCTAssertEqual(cts.pixelSize, 0.01)
+	}
+	
+	func test_pixelSizeForVCanvas() throws {
+		let vSize = 200
+		let hSize = 125
+		let fieldOfView = Float.pi/2
+		cts = Camera(hSize, vSize, fieldOfView)
+		XCTAssertEqual(cts.pixelSize, 0.01)
+	}
 }

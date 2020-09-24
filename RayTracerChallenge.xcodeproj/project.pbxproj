@@ -12,6 +12,7 @@
 		D701DC71251CB36A0027FF17 /* Computation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D701DC70251CB36A0027FF17 /* Computation.swift */; };
 		D701DC75251CF3560027FF17 /* CameraTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D701DC74251CF3560027FF17 /* CameraTests.swift */; };
 		D701DC79251CF3630027FF17 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = D701DC78251CF3630027FF17 /* Camera.swift */; };
+		D701DC7D251CFB8C0027FF17 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D701DC7C251CFB8C0027FF17 /* README.md */; };
 		D72CDEF92518C1880069D88C /* RaysTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72CDEF82518C1880069D88C /* RaysTests.swift */; };
 		D72CDEFF2518C2250069D88C /* Ray.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72CDEFE2518C2250069D88C /* Ray.swift */; };
 		D72CDF032518D5CD0069D88C /* Sphere.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72CDF022518D5CD0069D88C /* Sphere.swift */; };
@@ -57,6 +58,7 @@
 		D701DC70251CB36A0027FF17 /* Computation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Computation.swift; sourceTree = "<group>"; };
 		D701DC74251CF3560027FF17 /* CameraTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraTests.swift; sourceTree = "<group>"; };
 		D701DC78251CF3630027FF17 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
+		D701DC7C251CFB8C0027FF17 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		D72CDEF82518C1880069D88C /* RaysTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaysTests.swift; sourceTree = "<group>"; };
 		D72CDEFE2518C2250069D88C /* Ray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ray.swift; sourceTree = "<group>"; };
 		D72CDF022518D5CD0069D88C /* Sphere.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sphere.swift; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 				D7E0BF882510BC730044100B /* RayTracerChallenge.entitlements */,
 				D7E0BF812510BC730044100B /* Preview Content */,
 				D7E0BFA32510C5A00044100B /* Helpers.swift */,
+				D701DC7C251CFB8C0027FF17 /* README.md */,
 			);
 			path = RayTracerChallenge;
 			sourceTree = "<group>";
@@ -323,6 +326,7 @@
 			files = (
 				D7E0BF862510BC730044100B /* Main.storyboard in Resources */,
 				D7E0BF832510BC730044100B /* Preview Assets.xcassets in Resources */,
+				D701DC7D251CFB8C0027FF17 /* README.md in Resources */,
 				D7E0BF802510BC730044100B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

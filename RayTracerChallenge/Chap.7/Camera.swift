@@ -13,6 +13,9 @@ struct Camera {
 	var vSize: Int
 	var fieldOfView: Float
 	var transform = Matrix.identity
+	var pixelSize: Float {
+		return 0.01
+	}
 	
 	init(_ hSize: Int, _ vSize: Int, _ fieldOfView: Float) {
 		self.hSize = hSize
