@@ -6,6 +6,8 @@ http://raytracerchallenge.com
 
 ## Task List
 
+### From the book
+
 - [x] Tuples, Points, and Vectors
 
 	`Tuple` is struct. `Point` and `Vector` are just plain Tuple with different `w` value because I couldn't find out how to make a single constructor returned different type of struct. Should I have used class or enum instead?
@@ -30,5 +32,12 @@ http://raytracerchallenge.com
 - [ ] Constructive Solid Geometry (CSG)
 - [ ] Next Steps
 - [ ] Rendering the Cover Image
+
+
+### Not on the book but...
+
+- [ ] Convert render data to image (CGImage?) and put it up inside the app is perferable rather than save to .ppm file.
+- [ ] And run the app on every screen possible (iOS, iPadOS, macOS, tvOS and watchOS!).
+- [ ] Actually get into what the heck is going on there (other than just completing test cases frantically...).
 
 Licence MIT.
