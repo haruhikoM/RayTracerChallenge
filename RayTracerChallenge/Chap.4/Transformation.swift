@@ -84,3 +84,21 @@ extension Matrix {
 	}
 }
 
+// Chapter 7
+
+struct Transform {
+	static func view(_ from: Tuple, _ to: Tuple, _ up: Tuple) -> Matrix {
+		let forward = (to-from).normalizing()
+		let upn = up.normalizing()
+		let left = forward.cross(upn)
+		let trueUp = left.cross(forward)
+		
+		let orientation = Matrix(string: """
+							|\(left.x)|\(left.y)|\(left.z)|0|
+							|\(trueUp.x)|\(trueUp.y)|\(trueUp.z)|0|
+							|\(-forward.x)|\(-forward.y)|\(-forward.z)|0|
+							|0|0|0|1|
+							""")
+		return orientation * Matrix.translation(-from.x, -from.y, -from.z)
+	}
+}

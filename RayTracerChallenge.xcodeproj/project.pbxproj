@@ -10,6 +10,8 @@
 		D701DC67251C74460027FF17 /* WorldTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D701DC66251C74460027FF17 /* WorldTests.swift */; };
 		D701DC6D251C74EC0027FF17 /* World.swift in Sources */ = {isa = PBXBuildFile; fileRef = D701DC6C251C74EC0027FF17 /* World.swift */; };
 		D701DC71251CB36A0027FF17 /* Computation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D701DC70251CB36A0027FF17 /* Computation.swift */; };
+		D701DC75251CF3560027FF17 /* CameraTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D701DC74251CF3560027FF17 /* CameraTests.swift */; };
+		D701DC79251CF3630027FF17 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = D701DC78251CF3630027FF17 /* Camera.swift */; };
 		D72CDEF92518C1880069D88C /* RaysTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72CDEF82518C1880069D88C /* RaysTests.swift */; };
 		D72CDEFF2518C2250069D88C /* Ray.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72CDEFE2518C2250069D88C /* Ray.swift */; };
 		D72CDF032518D5CD0069D88C /* Sphere.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72CDF022518D5CD0069D88C /* Sphere.swift */; };
@@ -53,6 +55,8 @@
 		D701DC66251C74460027FF17 /* WorldTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldTests.swift; sourceTree = "<group>"; };
 		D701DC6C251C74EC0027FF17 /* World.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = World.swift; sourceTree = "<group>"; };
 		D701DC70251CB36A0027FF17 /* Computation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Computation.swift; sourceTree = "<group>"; };
+		D701DC74251CF3560027FF17 /* CameraTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraTests.swift; sourceTree = "<group>"; };
+		D701DC78251CF3630027FF17 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		D72CDEF82518C1880069D88C /* RaysTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaysTests.swift; sourceTree = "<group>"; };
 		D72CDEFE2518C2250069D88C /* Ray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ray.swift; sourceTree = "<group>"; };
 		D72CDF022518D5CD0069D88C /* Sphere.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sphere.swift; sourceTree = "<group>"; };
@@ -110,6 +114,7 @@
 			children = (
 				D701DC6C251C74EC0027FF17 /* World.swift */,
 				D701DC70251CB36A0027FF17 /* Computation.swift */,
+				D701DC78251CF3630027FF17 /* Camera.swift */,
 			);
 			path = Chap.7;
 			sourceTree = "<group>";
@@ -222,6 +227,7 @@
 				D72CDF19251BAE510069D88C /* LightTests.swift */,
 				D72CDF21251BAF8F0069D88C /* MaterialsTests.swift */,
 				D701DC66251C74460027FF17 /* WorldTests.swift */,
+				D701DC74251CF3560027FF17 /* CameraTests.swift */,
 			);
 			path = RayTracerChallengeTests;
 			sourceTree = "<group>";
@@ -337,6 +343,7 @@
 			files = (
 				D72CDF26251BAFBB0069D88C /* Material.swift in Sources */,
 				D72CDF0F251A05240069D88C /* Intersection.swift in Sources */,
+				D701DC79251CF3630027FF17 /* Camera.swift in Sources */,
 				D7E0BF7E2510BC720044100B /* ContentView.swift in Sources */,
 				D7E0BFA02510BE5D0044100B /* Tuple.swift in Sources */,
 				D72CDF1E251BAF110069D88C /* Light.swift in Sources */,
@@ -358,6 +365,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D701DC75251CF3560027FF17 /* CameraTests.swift in Sources */,
 				D72CDF0B251A04490069D88C /* IntersectionsTests.swift in Sources */,
 				D7E0BF9D2510BCB20044100B /* TuplesTests.swift in Sources */,
 				D73740F1251490A600F9368E /* MatricesTests.swift in Sources */,

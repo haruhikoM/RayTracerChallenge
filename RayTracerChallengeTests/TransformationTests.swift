@@ -214,4 +214,45 @@ class TransformationTests: XCTestCase {
 		
 		XCTAssertNotNil(transform)
 	}
+	
+	//MARK: - Chapter 7 : ViewTransform
+	func test_transformationMatrixForDefaultOrientation() throws {
+		let from = Point(0,0,0)
+		let to = Point(0,0,-1)
+		let up = Vector(0,1,0)
+		let t = Transform.view(from, to, up)
+		XCTAssertEqual(t, Matrix.identity)
+	}
+	
+	func test_transformationMatrixLookInPositiveZ() throws {
+		let from = Point(0,0,0)
+		let to = Point(0,0,1)
+		let up = Vector(0,1,0)
+		let t = Transform.view(from, to, up)
+		XCTAssertEqual(t, Matrix.scaling(-1, 1, -1))
+	}
+	
+	func test_ViewTransformMoveWorld() throws {
+		let from = Point(0,0,8)
+		let to = Point(0,0,0)
+		let up = Vector(0,1,0)
+		let t = Transform.view(from, to, up)
+		XCTAssertEqual(t, Matrix.translation(0, 0, -8))
+	}
+	
+	func test_arbitraryViewTransformation() throws {
+		let from = Point(1,3,2)
+		let to = Point(4,-2,8)
+		let up = Vector(1,1,0)
+		let t = Transform.view(from, to, up)
+		
+		let mat = Matrix(string: """
+		| -0.50709 | 0.50709 |  0.67612 | -2.36643 |
+		|  0.76772 | 0.60609 |  0.12122 | -2.82843 |
+		| -0.35857 | 0.59761 | -0.71714 |  0.00000 |
+		|  0.00000 | 0.00000 |  0.00000 |  1.00000 |
+		""")
+		
+		XCTAssertEqual(mat, t)
+	}
 }
