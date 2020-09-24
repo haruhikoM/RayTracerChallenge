@@ -16,3 +16,9 @@ struct PointLight {
 		self.intensity = intensity
 	}
 }
+
+extension PointLight: Equatable {
+	static func == (lhs: Self, rhs: Self) -> Bool {
+		lhs.position == rhs.position && lhs.intensity == rhs.intensity
+	}
+}

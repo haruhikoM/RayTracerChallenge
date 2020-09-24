@@ -19,7 +19,7 @@ struct Ray {
 
 //typealias IntersectionType = [Float]
 extension Ray {
-	func intersects<T: Transformable>(_ object: T) -> Intersection<T> {
+	func intersects<T: SceneObject>(_ object: T) -> Intersection<T> {
 		let ray2 = transform(Matrix.inverse(object.transform)())
 		let sphereToRay = ray2.origin - Point(0, 0, 0)//<-sphere's origin
 		let a = ray2.direction.dot(ray2.direction)

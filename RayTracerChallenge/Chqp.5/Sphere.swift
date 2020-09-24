@@ -8,10 +8,20 @@
 
 import Foundation
 
-struct Sphere: Identifiable, Transformable {
-	var id = UUID()
-	var transform = Matrix.identity
-	var material = Material()
+class Sphere: SceneObject {
+//	var id = UUID()
+//	var material = Material()
+	init(material: Material) {
+		super.init(Matrix.identity, material)
+	}
+	
+	init(transform: Matrix) {
+		super.init(transform, Material())
+	}
+	
+	init() {
+		super.init(Matrix.identity, Material())
+	}
 }
 
 extension Sphere {
@@ -26,12 +36,19 @@ extension Sphere {
 	}
 }
 
-extension Sphere: Equatable {
-	static func == (lhs: Self, rhs: Self) -> Bool {
-		lhs.id == rhs.id
+class SceneObject: Identifiable {
+	let id: UUID = UUID()
+	var transform: Matrix
+	var material: Material
+	
+	init(_ transform: Matrix, _ material: Material) {
+		self.transform = transform
+		self.material = material
 	}
 }
 
-protocol Transformable {
-	var transform: Matrix { get }
+extension SceneObject: Equatable {
+	static func == (lhs: SceneObject, rhs: SceneObject) -> Bool {
+		lhs.id == rhs.id
+	}
 }
