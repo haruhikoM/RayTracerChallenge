@@ -20,7 +20,10 @@ http://raytracerchallenge.com
 	
 - [x] Ray-Sphere Intersections
 - [x] Light and Shading
-- [ ] Making a Scene
+- [x] Making a Scene
+
+	Replace `Float` with `Double`.
+
 - [ ] Shadows
 - [ ] Planes
 - [ ] Patterns
