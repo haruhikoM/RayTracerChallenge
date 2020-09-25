@@ -104,14 +104,14 @@ extension Exercise {
 	func chap4() {
 		let width  = 100
 		let height = 100
-		let center = Point(Float(width)/2, Float(height)/2, 0)
+		let center = Point(Double(width)/2, Double(height)/2, 0)
 		var canvas = Canvas(width, height)
 		var points = Array(repeating: Point(0, 0, 1), count: 12)
 
 		for (idx, p) in points.enumerated() {
-			let t = Matrix.rotation(by: .y, radians: Float(idx) * Float.pi/6)
+			let t = Matrix.rotation(by: .y, radians: Double(idx) * Double.pi/6)
 			let td = t * p
-			let r = Float(height * 3/8)
+			let r = Double(height * 3/8)
 			points[idx] = Point(td.x * r+center.x, td.z * r+center.y, 0)
 			
 		}
@@ -132,22 +132,22 @@ extension Exercise {
 	func chap5() {
 		let width  = 100
 		let height = 100
-//		let center = Point(Float(width)/2, Float(height)/2, 0)
+//		let center = Point(Double(width)/2, Double(height)/2, 0)
 		var c = Canvas(width, height)
 		
 		// hint:2, 3, 4
-		let wallZ: Float = 10.0
-		let wallSize: Float = 7.0
+		let wallZ: Double = 10.0
+		let wallSize: Double = 7.0
 		let half = wallSize / 2
 		
-		let pixelSize = wallSize / Float(width)
+		let pixelSize = wallSize / Double(width)
 		
 		let rayOrigin = Point(0,0,-5)
 		let s = Sphere()
 		for y in 0..<height {
-			let worldY = half - pixelSize * Float(y)
+			let worldY = half - pixelSize * Double(y)
 			for x in 0..<width {
-				let worldX = -half + pixelSize * Float(x)
+				let worldX = -half + pixelSize * Double(x)
 				let pos = Point(worldX, worldY, wallZ)
 				let d = pos - rayOrigin
 				let r = Ray(rayOrigin, d.normalizing())
@@ -171,11 +171,11 @@ extension Exercise {
 		let canvasSize = 300
 		var c = Canvas(canvasSize, canvasSize)
 		
-		let wallZ: Float = 10.0
-		let wallSize: Float = 7.0
+		let wallZ: Double = 10.0
+		let wallSize: Double = 7.0
 		let half = wallSize / 2
 		
-		let pixelSize = wallSize / Float(canvasSize)
+		let pixelSize = wallSize / Double(canvasSize)
 		
 		let rayOrigin = Point(0,0,-5)
 		let s = Sphere(material: Material(color: Color(r: 1, g: 0.2, b: 1)))
@@ -186,9 +186,9 @@ extension Exercise {
 		let light = PointLight(lightPosition, lightColor)
 		
 		for y in 0..<canvasSize {
-			let worldY = half - pixelSize * Float(y)
+			let worldY = half - pixelSize * Double(y)
 			for x in 0..<canvasSize {
-				let worldX = -half + pixelSize * Float(x)
+				let worldX = -half + pixelSize * Double(x)
 				let pos = Point(worldX, worldY, wallZ)
 				let d = pos - rayOrigin
 				let r = Ray(rayOrigin, d.normalizing())
@@ -210,5 +210,80 @@ extension Exercise {
 			}
 		}
 		save(text: c.toPPM, to: documentDirectory, named: fileName(chap: 5))
+	}
+}
+
+//MARK: - Chapter 7
+extension Exercise {
+	var floor: Sphere {
+		let floor = Sphere()
+		floor.transform = Matrix.scaling(10, 0.01, 10)
+		floor.material = Material()
+		floor.material.color = Color(r: 1, g: 0.9, b: 0.9)
+		floor.material.specular = 0
+		return floor
+	}
+		
+	var leftWall: Sphere {
+		let leftWall = Sphere()
+		leftWall.transform = Matrix.translation(0, 0, 5) *
+			Matrix.rotation(by: .y, radians: -Double.pi/4) *
+			Matrix.rotation(by: .x, radians: Double.pi/2) *
+			Matrix.scaling(10, 0.01, 10)
+		leftWall.material = floor.material
+		return leftWall
+	}
+	
+	var rightWall: Sphere {
+		let rightWall = Sphere()
+		rightWall.transform = Matrix.translation(0, 0, 5) *
+			Matrix.rotation(by: .y, radians: Double.pi/4) *
+			Matrix.rotation(by: .x, radians: Double.pi/2) *
+			Matrix.scaling(10, 0.01, 10)
+		rightWall.material = floor.material
+		return rightWall
+	}
+	
+	var middleSphere: Sphere {
+		let middle = Sphere()
+		middle.transform = Matrix.translation(-0.5, 1, 0.5)
+		middle.material = Material()
+		middle.material.color = Color(r: 0.1, g: 1, b: 0.5)
+		middle.material.diffuse = 0.7
+		middle.material.specular = 0.3
+		return middle
+	}
+	
+	var rightSphere: Sphere {
+		let right = Sphere()
+		right.transform = Matrix.translation(1.5, 0.5, -0.5) * Matrix.scaling(0.5, 0.5, 0.5)
+		right.material = Material()
+		right.material.color = Color(r: 0.5, g: 1, b: 0.1)
+		right.material.diffuse = 0.7
+		right.material.specular = 0.3
+		return right
+	}
+	
+	var leftSphere: Sphere {
+		let left = Sphere()
+		left.transform = Matrix.translation(-1.5, 0.33, -0.75) * Matrix.scaling(0.33, 0.33, 0.33)
+		left.material = Material()
+		left.material.color = Color(r: 1, g: 0.8, b: 0.1)
+		left.material.diffuse = 0.7
+		left.material.specular = 0.3
+		return left
+	}
+
+	
+	func chap7() {
+		var world = World()
+		world.light = PointLight(Point(-10,10,-10), .white)
+		world.scene = [floor, leftWall, rightWall, middleSphere, leftSphere, rightSphere]
+		
+		var camera = Camera(400, 200, Double.pi/3)
+		camera.transform = Transform.view(Point(0,1.5,-5), Point(0,1,0), Vector(0,1,0))
+		
+		let canvas = camera.render(world)
+		save(text: canvas.toPPM, to: documentDirectory, named: fileName(chap: 7))
 	}
 }

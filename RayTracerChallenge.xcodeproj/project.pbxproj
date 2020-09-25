@@ -186,8 +186,8 @@
 		D7E0BF7A2510BC720044100B /* RayTracerChallenge */ = {
 			isa = PBXGroup;
 			children = (
-				D701DC65251C740E0027FF17 /* Chap.7 */,
 				D753209C251388110026EF13 /* PuttingItTogether.swift */,
+				D701DC65251C740E0027FF17 /* Chap.7 */,
 				D72CDF14251B3CAF0069D88C /* Chap.6 */,
 				D72CDEF72518C0FF0069D88C /* Chqp.5 */,
 				D777922D251748DC00CCD9FA /* Chap.4 */,

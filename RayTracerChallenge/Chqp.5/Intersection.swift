@@ -10,10 +10,10 @@ import Foundation
 
 enum Intersection<U: Identifiable>: Equatable {
 	case none
-	case one(_ t: Float, _ object: U)
+	case one(_ t: Double, _ object: U)
 	indirect case multi([Intersection])
 
-	init(_ t: Float, _ object: U) {
+	init(_ t: Double, _ object: U) {
 		self = .one(t, object)
 	}
 
@@ -66,7 +66,7 @@ enum Intersection<U: Identifiable>: Equatable {
 }
 
 extension Intersection {
-	var t: Float? {
+	var t: Double? {
 		switch self {
 		case let .one(t, _): return t
 		default:

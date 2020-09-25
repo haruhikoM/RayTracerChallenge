@@ -86,8 +86,8 @@ class TransformationTests: XCTestCase {
 		//	​Then​ half_quarter * p = point(0, √2/2, √2/2)
 		//	​And​ full_quarter * p = point(0, 0, 1)
 		let p = Point(x: 0, y: 1, z: 0)
-		let halfQuarter = Matrix.rotation(by: .x, radians: Float.pi/4)
-		let fullQuarter = Matrix.rotation(by: .x, radians: Float.pi/2)
+		let halfQuarter = Matrix.rotation(by: .x, radians: Double.pi/4)
+		let fullQuarter = Matrix.rotation(by: .x, radians: Double.pi/2)
 		XCTAssertEqual(halfQuarter * p, Point(x: 0, y: sqrt(2)/2, z: sqrt(2)/2))
 		XCTAssertEqual(fullQuarter * p, Point(x: 0, y: 0, z: 1))
 	}
@@ -95,8 +95,8 @@ class TransformationTests: XCTestCase {
 	func test_rotationByYAxis() throws {
 		// P.49
 		let p = Point(x: 0, y: 0, z: 1)
-		let halfQuarter = Matrix.rotation(by: .y, radians: Float.pi/4)
-		let fullQuarter = Matrix.rotation(by: .y, radians: Float.pi/2)
+		let halfQuarter = Matrix.rotation(by: .y, radians: Double.pi/4)
+		let fullQuarter = Matrix.rotation(by: .y, radians: Double.pi/2)
 		XCTAssertEqual(halfQuarter * p, Point(x: sqrt(2)/2, y: 0, z: sqrt(2)/2))
 		XCTAssertEqual(fullQuarter * p, Point(x: 1, y: 0, z: 0))
 	}
@@ -104,8 +104,8 @@ class TransformationTests: XCTestCase {
 	func test_rotationByZAxis() throws {
 		// P.50
 		let p = Point(x: 0, y: 1, z: 0)
-		let halfQuarter = Matrix.rotation(by: .z, radians: Float.pi/4)
-		let fullQuarter = Matrix.rotation(by: .z, radians: Float.pi/2)
+		let halfQuarter = Matrix.rotation(by: .z, radians: Double.pi/4)
+		let fullQuarter = Matrix.rotation(by: .z, radians: Double.pi/2)
 		XCTAssertEqual(halfQuarter * p, Point(x: -sqrt(2)/2, y: sqrt(2)/2, z: 0))
 		XCTAssertEqual(fullQuarter * p, Point(x: -1, y: 0, z: 0))
 	}
@@ -184,7 +184,7 @@ class TransformationTests: XCTestCase {
 		​ 	  ​When​ T ← C * B * A
 		​ 	  ​Then​ T * p = point(15, 0, 7)*/
 		var p = Point(x: 1, y: 0, z:1)
-		var A = Matrix.rotation(by: .x, radians: Float.pi/2)
+		var A = Matrix.rotation(by: .x, radians: Double.pi/2)
 		
 		let B = Matrix.scaling(5, 5, 5)
 		let C = Matrix.translation(10, 5, 7)
@@ -200,7 +200,7 @@ class TransformationTests: XCTestCase {
 		
 		
 		p = Point(x: 1, y: 0, z: 1)
-		A = Matrix.rotation(by: .x, radians: Float.pi/2)
+		A = Matrix.rotation(by: .x, radians: Double.pi/2)
 		
 		let T = C * B * A
 		XCTAssertEqual(T * p, Point(15, 0, 7))
@@ -208,7 +208,7 @@ class TransformationTests: XCTestCase {
 		
 		// FLUENT API TEST
 		let transform = Matrix.identity
-			.rotate(by: .x, radians: Float.pi/2)
+			.rotate(by: .x, radians: Double.pi/2)
 			.scale(5, 5, 5)
 			.translate(10, 5, 7)
 		

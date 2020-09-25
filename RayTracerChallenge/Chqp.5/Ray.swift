@@ -17,7 +17,7 @@ struct Ray {
 	}
 }
 
-//typealias IntersectionType = [Float]
+//typealias IntersectionType = [Double]
 extension Ray {
 	func intersects<T: SceneObject>(_ object: T) -> Intersection<T> {
 		let ray2 = transform(Matrix.inverse(object.transform)())
@@ -44,7 +44,7 @@ extension Ray {
 }
 
 extension Ray {
-	func position(_ time: Float) -> Tuple {
+	func position(_ time: Double) -> Tuple {
 		origin + (direction * time)
 		/* d = s * t */
 	}

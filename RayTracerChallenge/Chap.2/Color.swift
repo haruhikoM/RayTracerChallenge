@@ -9,11 +9,11 @@
 import Foundation
 
 struct Color: Equatable {
-	var r, g, b: Float
+	var r, g, b: Double
 	
-	var red: Float { return r }
-	var green: Float { return g }
-	var blue: Float { return b }
+	var red: Double { return r }
+	var green: Double { return g }
+	var blue: Double { return b }
 }
 
 extension Color {
@@ -22,7 +22,7 @@ extension Color {
 	}
 }
 
-extension Float {
+extension Double {
 	var to8bitInt: Int {
 		let value = Int((255+1)*self)
 		if value > 255 { return 255}
@@ -49,7 +49,7 @@ extension Color {
 		return Color(r: lhs.r - rhs.r, g: lhs.g - rhs.g, b: lhs.b - rhs.b)
 	}
 	
-	static func * (lhs: Color, rhs: Float) -> Color {
+	static func * (lhs: Color, rhs: Double) -> Color {
 		return Color(r: lhs.r * rhs, g: lhs.g * rhs, b: lhs.b * rhs)
 	}
 	

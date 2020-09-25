@@ -81,19 +81,19 @@ class TuplesTests: XCTestCase {
 		XCTAssertEqual(t, p)
 	}
 	
-	/// Float comaprison
-	func test_ComparingFloat() throws {
-		let EPSILON: Float = 0.00001
+	/// Double comaprison
+	func test_ComparingDouble() throws {
+		let EPSILON: Double = 0.00001
 		
-		func equal(a: Float, b: Float) -> Bool {
+		func equal(a: Double, b: Double) -> Bool {
 			if abs(a-b) < EPSILON {
 				return true
 			}
 			return false
 		}
 		
-		let f1: Float = 33
-		let f2: Float = 7
+		let f1: Double = 33
+		let f2: Double = 7
 		let v1 = f1/f2
 		let v2 = f1/f2
 		
@@ -237,7 +237,7 @@ class TuplesTests: XCTestCase {
 		//	Then magnitude(norm) = 1
 		v = Vector(x: 1, y: 2, z: 3)
 		norm = v.normalizing()
-		XCTAssertTrue(Float(1).isEqual(to: norm.magnitude))
+		XCTAssertTrue(Double(1).isAlmostEqual(to: norm.magnitude))
 		XCTAssertTrue(1 === norm.magnitude)
 	}
     

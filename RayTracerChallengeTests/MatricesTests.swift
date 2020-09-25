@@ -520,9 +520,9 @@ class MatricesTests: XCTestCase {
 	}
 
 	// Not used
-	func test_FloatFineCheck() throws {
-		var shouldNotBeConsideredAsInt: Float = 1.0001
-		var shouldBeConsideredAsInt: Float = 1.0000000000000001
+	func test_DoubleFineCheck() throws {
+		var shouldNotBeConsideredAsInt: Double = 1.0001
+		var shouldBeConsideredAsInt: Double = 1.0000000000000001
 		
 		XCTAssertTrue(shouldBeConsideredAsInt.isInt)
 		XCTAssertFalse(shouldNotBeConsideredAsInt.isInt)

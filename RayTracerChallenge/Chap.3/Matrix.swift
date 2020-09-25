@@ -10,12 +10,12 @@ import Foundation
 
 struct Matrix {
 	typealias Coordinate = (rows: Int, colums: Int)
-	var rows: [[Float]]
+	var rows: [[Double]]
 	var size: (Int, Int) {
 		(rows.count, rows.first!.count)
 	}
 	
-	init(_ row: Int, _ column: Int, _ element: Float = 0.0) {
+	init(_ row: Int, _ column: Int, _ element: Double = 0.0) {
 		rows = Array(repeating: Array(repeating: element, count: column), count: row)
 	}
 	
@@ -38,12 +38,12 @@ struct Matrix {
 			let row = newArray[rowIdx].components(separatedBy: ",")
 			for columnIdx in 0..<size.1 {
 				let val = row[columnIdx]
-				self[rowIdx, columnIdx] = Float(val)!
+				self[rowIdx, columnIdx] = Double(val)!
 			}
 		}
 	}
 
-	subscript(_ rowIdx: Int, _ columnIdx: Int) -> Float {
+	subscript(_ rowIdx: Int, _ columnIdx: Int) -> Double {
 		get {
 			rows[rowIdx][columnIdx]
 		}
@@ -77,7 +77,7 @@ extension Matrix {
 		return Tuple(x: tempMatrix[0,0], y: tempMatrix[1,0], z: tempMatrix[2,0], w: tempMatrix[3,0])
 	}
 	
-	static func / (lhs: Matrix, rhs: Float) -> Matrix {
+	static func / (lhs: Matrix, rhs: Double) -> Matrix {
 		var mat = Matrix(lhs.size.0, lhs.size.1)
 		for rowIdx in 0..<lhs.size.0 {
 			for colIdx in 0..<lhs.size.1 {
@@ -110,7 +110,7 @@ extension Matrix {
 		return tempMat
 	}
 	
-	func determinant() -> Float {
+	func determinant() -> Double {
 		if self.size == (2, 2) {
 			return self[0, 0] * self[1, 1] - self[0, 1] * self[1, 0]
 		}
@@ -131,12 +131,12 @@ extension Matrix {
 		return copy
 	}
 	
-	func minor(_ row: Int, _ column: Int) -> Float {
+	func minor(_ row: Int, _ column: Int) -> Double {
 		let sub = submatrix(row, column)
 		return sub.determinant()
 	}
 	
-	func cofactor(_ row: Int, _ column: Int) -> Float {
+	func cofactor(_ row: Int, _ column: Int) -> Double {
 		let minor = self.minor(row, column)
 		return (row+column).isEven ? -minor : minor
 	}

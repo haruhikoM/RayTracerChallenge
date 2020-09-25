@@ -9,7 +9,7 @@
 import Foundation
 
 struct Computation {
-	var t: Float
+	var t: Double
 	var object: SceneObject
 	var point: Tuple        // Point
 	var eyeVector: Tuple    // Vector

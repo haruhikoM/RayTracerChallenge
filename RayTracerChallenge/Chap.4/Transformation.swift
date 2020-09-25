@@ -9,7 +9,7 @@
 import Foundation
 
 extension Matrix {
-	static func translation(_ x: Float, _ y: Float, _ z: Float) -> Self {
+	static func translation(_ x: Double, _ y: Double, _ z: Double) -> Self {
 		return Matrix(string: """
 		|1|0|0|\(x)|
 		|0|1|0|\(y)|
@@ -18,11 +18,11 @@ extension Matrix {
 		""")
 	}
 	
-	func translate(_ x: Float, _ y: Float, _ z: Float) -> Self {
+	func translate(_ x: Double, _ y: Double, _ z: Double) -> Self {
 		self * Matrix.translation(x, y, z)
 	}
 	
-	static func scaling(_ x: Float, _ y: Float, _ z: Float) -> Self {
+	static func scaling(_ x: Double, _ y: Double, _ z: Double) -> Self {
 		return Matrix(string: """
 		|\(x)|0|0|0|
 		|0|\(y)|0|0|
@@ -31,11 +31,11 @@ extension Matrix {
 		""")
 	}
 	
-	func scale(_ x: Float, _ y: Float, _ z: Float) -> Self {
+	func scale(_ x: Double, _ y: Double, _ z: Double) -> Self {
 		self * Matrix.scaling(x, y, z)
 	}
 	
-	static func rotation(by axis: Axis, radians r: Float) -> Self {
+	static func rotation(by axis: Axis, radians r: Double) -> Self {
 		let str: String
 		switch axis {
 		case .x:
@@ -63,13 +63,13 @@ extension Matrix {
 		return Matrix(string: str)
 	}
 	
-	func rotate(by axis: Axis, radians r: Float) -> Self {
+	func rotate(by axis: Axis, radians r: Double) -> Self {
 		self * Matrix.rotation(by: axis, radians: r)
 	}
 	
-	static func shearing(_ xy: Float, _ xz: Float,
-						 _ yx: Float, _ yz: Float,
-						 _ zx: Float, _ zy: Float) -> Self
+	static func shearing(_ xy: Double, _ xz: Double,
+						 _ yx: Double, _ yz: Double,
+						 _ zx: Double, _ zy: Double) -> Self
 	{
 		return Matrix(string: """
 		|1|\(xy)|\(xz)|0|

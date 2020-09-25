@@ -8,22 +8,23 @@
 
 import Foundation
 
-extension Float {
-	static let epsilon: Float = 0.00001
+extension Double {
+	static let epsilon: Double = 0.00001
 	
-	static func === (rhs: Self, lhs: Self) -> Bool {
-		rhs.isEqual(to: lhs)
+	static func == (lhs: Self, rhs: Self) -> Bool {
+		lhs.isAlmostEqual(to: rhs)
 	}
 	
-	func isEqual(to rhs: Float) -> Bool {
-		if abs(self-rhs) < Float.epsilon {
-			return true
-		}
-		return false
+	static func === (lhs: Self, rhs: Self) -> Bool {
+		lhs.isAlmostEqual(to: rhs)
+	}
+	
+	func isAlmostEqual(to rhs: Double) -> Bool {
+		return self-rhs < Double.epsilon && self-rhs > -Double.epsilon
 	}
 	
 	var isInt: Bool {
-		!(abs(self) - Float(abs(Int(self))) > Float.epsilon)
+		!(abs(self) - Double(abs(Int(self))) > Double.epsilon)
 	}
 }
 
@@ -33,8 +34,9 @@ extension Int {
 	}
 }
 
-extension Array where Element == Float {
+extension Array where Element == Double {
 	static func == (lhs: Self, rhs: Self) -> Bool {
-		!(lhs.enumerated().contains(where: { !$1.isEqual(to: rhs[$0]) }))
+		assert(lhs.count == rhs.count)
+		return !(lhs.enumerated().contains { !$1.isAlmostEqual(to: rhs[$0]) })
 	}
 }

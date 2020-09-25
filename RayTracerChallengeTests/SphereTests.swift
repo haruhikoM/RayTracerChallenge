@@ -132,7 +132,7 @@ class SphereTests: XCTestCase {
 		var n = cts.normal(at: Point(0, 1.70711, -0.70711))
 		XCTAssertEqual(Vector(0, 0.70711, -0.70711), n)
 		
-		let m = Matrix.scaling(1, 0.5, 1) * Matrix.rotation(by: .z, radians: Float.pi/5)
+		let m = Matrix.scaling(1, 0.5, 1) * Matrix.rotation(by: .z, radians: Double.pi/5)
 		cts.transform = m
 		n = cts.normal(at: Point(0,	sqrt(2)/2, -sqrt(2)/2))
 		XCTAssertEqual(Vector(0, 0.97014, -0.24254), n)

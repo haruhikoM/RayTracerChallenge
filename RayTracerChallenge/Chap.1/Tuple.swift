@@ -9,14 +9,14 @@
 import Foundation
 
 protocol Tuplize {
-	var x: Float { get }
-	var y: Float { get }
-	var z: Float { get }
-	var w: Float { get }
+	var x: Double { get }
+	var y: Double { get }
+	var z: Double { get }
+	var w: Double { get }
 }
 
 extension Tuple {
-	init(_ x: Float, _ y: Float, _ z: Float, _ w: Float) {
+	init(_ x: Double, _ y: Double, _ z: Double, _ w: Double) {
 		self.x = x
 		self.y = y
 		self.z = z
@@ -25,11 +25,11 @@ extension Tuple {
 }
 
 struct Tuple: CustomStringConvertible {
-	var x, y, z, w: Float
+	var x, y, z, w: Double
 	var type: Variant {
 		Variant(rawValue: w) ?? .unknown
 	}
-	enum Variant: Float {
+	enum Variant: Double {
 		case point  = 1.0
 		case vector = 0.0
 		case unknown = 99.9
@@ -62,7 +62,7 @@ struct Tuple: CustomStringConvertible {
 }
 
 extension Tuple {
-	var magnitude: Float {
+	var magnitude: Double {
 		assert(type == .vector)
 		return sqrt(x*x + y*y + z*z + w*w)
 	}
@@ -80,10 +80,11 @@ extension Tuple {
 		// }
 	}
 	
+	///
 	/// dot product; a.k.a. scalar product or inner product
 	/// the smaller the dot product, the larger the angle between the vectors
 	///
-	func dot(_ other: Tuple) -> Float {
+	func dot(_ other: Tuple) -> Double {
 		x * other.x + y * other.y + z * other.z + w * other.w
 	}
 	
@@ -112,11 +113,11 @@ extension Tuple {
 		return Tuple(x: lhs.x - rhs.x, y: lhs.y - rhs.y, z: lhs.z - rhs.z, w: lhs.w - rhs.w)
 	}
 	
-	static func * (lhs: Self, rhs: Float) -> Self {
+	static func * (lhs: Self, rhs: Double) -> Self {
 		return Tuple(x: lhs.x * rhs, y: lhs.y * rhs, z: lhs.z * rhs, w: lhs.w * rhs)
 	}
 	
-	static func / (lhs: Self, rhs: Float) -> Self {
+	static func / (lhs: Self, rhs: Double) -> Self {
 		return Tuple(x: lhs.x / rhs, y: lhs.y / rhs, z: lhs.z / rhs, w: lhs.w / rhs)
 	}
 	
@@ -128,10 +129,10 @@ extension Tuple {
 extension Tuple: Equatable {
 	static func == (lhs: Self, rhs: Self) -> Bool {
 		if
-			lhs.x.isEqual(to: rhs.x),
-			lhs.y.isEqual(to: rhs.y),
-			lhs.z.isEqual(to: rhs.z),
-			lhs.w.isEqual(to: rhs.w)
+			lhs.x.isAlmostEqual(to: rhs.x),
+			lhs.y.isAlmostEqual(to: rhs.y),
+			lhs.z.isAlmostEqual(to: rhs.z),
+			lhs.w.isAlmostEqual(to: rhs.w)
 		{
 			return true
 		}
@@ -139,11 +140,11 @@ extension Tuple: Equatable {
 	}
 }
 
-func Point(x: Float, y: Float, z: Float) -> Tuple {
+func Point(x: Double, y: Double, z: Double) -> Tuple {
 	Tuple(x: x, y: y, z: z, w: 1.0)
 }
 
-func Point(_ x: Float, _ y: Float, _ z: Float) -> Tuple {
+func Point(_ x: Double, _ y: Double, _ z: Double) -> Tuple {
 	Tuple(x: x, y: y, z: z, w: 1.0)
 }
 
@@ -152,11 +153,11 @@ func Point(_ x: Float, _ y: Float, _ z: Float) -> Tuple {
 
 /// Vector -> a value that encoded DIRECTION and DISTANCE.
 /// The DISTANCE represented by a vector -> its MAGNITUDE or LENGTH
-func Vector(x: Float, y: Float, z: Float) -> Tuple {
+func Vector(x: Double, y: Double, z: Double) -> Tuple {
 	Tuple(x: x, y: y, z: z, w: 0.0)
 }
 
-func Vector(_ x: Float, _ y: Float, _ z: Float) -> Tuple {
+func Vector(_ x: Double, _ y: Double, _ z: Double) -> Tuple {
 	Tuple(x: x, y: y, z: z, w: 0.0)
 	
 }
