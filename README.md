@@ -8,11 +8,11 @@ http://raytracerchallenge.com
 
 |Chap 2|Chap 4|Chap 5|
 |------|------|------
-|![Chap 2](https://github.com/haruhikoM/RayTracerChallenge/blob/main/RenderedImages/RTC-Chap2.png)|![Chap 4](https://github.com/haruhikoM/RayTracerChallenge/blob/main/RenderedImages/RTC-Chap4.png)|![Chap 5](https://github.com/haruhikoM/RayTracerChallenge/blob/main/RenderedImages/RTC-Chap5.png)|
+|![Chap 2](https://github.com/haruhikoM/RayTracerChallenge/blob/main/RenderedImages/RTC-Chap2.png)|![Chap 4](https://github.com/haruhikoM/RayTracerChallenge/blob/main/RenderedImages/RTC-Chap4.png)|![Chap 5](https://github.com/haruhikoM/RayTracerChallenge/blob/main/RenderedImages/RTC-Chap5-2.png)|
 
 |Chap 6|Chap 7||
 |------|------|------
-|![Chap 6](https://github.com/haruhikoM/RayTracerChallenge/blob/main/RenderedImages/RTC-Chap5-2.png)|![Chap 7](https://github.com/haruhikoM/RayTracerChallenge/blob/main/RenderedImages/RTC-Chap7.png)||
+|![Chap 6](https://github.com/haruhikoM/RayTracerChallenge/blob/main/RenderedImages/RTC-Chap5.png)|![Chap 7](https://github.com/haruhikoM/RayTracerChallenge/blob/main/RenderedImages/RTC-Chap7.png)||
 
 
 
