@@ -29,12 +29,14 @@ struct Material: Equatable {
 }
 
 extension Material {
-	func lighting(light: PointLight, point: Tuple, eyeVector: Tuple, normalVector: Tuple) -> Color {
+	func lighting(light: PointLight, point: Tuple, eyeVector: Tuple, normalVector: Tuple, isInShadow: Bool = false) -> Color {
 		var _ambient, _diffuse, _specular: Color
 		
 		let effectiveColor = color * light.intensity
 		let lightV = (light.position - point).normalizing()
 		_ambient = effectiveColor * self.ambient
+		
+		guard !isInShadow else { return _ambient }
 		
 		let lightDotNormal = lightV.dot(normalVector)
 		if lightDotNormal < 0 {

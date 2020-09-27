@@ -89,4 +89,25 @@ class WorldTests: XCTestCase {
 		let c = cts.color(at: r)
 		XCTAssertEqual(c, inner.material.color)
 	}
+	
+	// Chapter 8
+	func test_noShadowWhenNothigIsCollinearWtihPointAndLight() throws {
+		let p = Point(0,10,0)
+		XCTAssertFalse(cts.isShadowed(p))
+	}
+	
+	func test_shadowWhenObjectisBetweenPointAndLight() throws {
+		let p = Point(10,-10,10)
+		XCTAssertTrue(cts.isShadowed(p))
+	}
+	
+	func test_noShadowWhenObjectisBehindLight() throws {
+		let p = Point(-20,20,-20)
+		XCTAssertFalse(cts.isShadowed(p))
+	}
+	
+	func test_noShadowWhenObjectisBehindPoint() throws {
+		let p = Point(-2,2,-2)
+		XCTAssertFalse(cts.isShadowed(p))
+	}
 }

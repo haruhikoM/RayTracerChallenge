@@ -14,6 +14,19 @@ struct World {
 }
 
 extension World {
+	func isShadowed(_ point: Tuple) -> Bool {
+		let v = light.position - point
+		let distance = v.magnitude
+		let ray = Ray(point, v.normalizing())
+		let intersections = intersects(ray)
+		let h = intersections.hit()
+		
+		if case let .one(t, _) = h, t < distance {
+			return true
+		}
+		return false
+	}
+	
 	func intersects(_ ray: Ray) -> Intersection<SceneObject> {
 		let arr = scene.map { ray.intersects($0) }
 		var result = Intersection<SceneObject>.none

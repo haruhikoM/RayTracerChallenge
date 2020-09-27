@@ -72,4 +72,21 @@ class MaterialsTests: XCTestCase {
 		let result = m.lighting(light: light, point: position, eyeVector: eyeV, normalVector: normalV)
 		XCTAssertEqual(Color(r: 0.1, g: 0.1, b: 0.1), result)
 	}
+	
+	// Chapter 8
+	func test_lightingWithSurfaceInShadow() throws {
+		//	Scenario: Lighting with the surface in shadow
+		//	Given eyev ← vector(0, 0, -1)
+		//	And normalv ← vector(0, 0, -1)
+		//	And light ← point_light(point(0, 0, -10), color(1, 1, 1)) And in_shadow ← true
+		//	When result ← lighting(m, light, position, eyev, normalv, in_shadow)
+		//	Then result = color(0.1, 0.1, 0.1)
+		let eyev = Vector(0, 0, -1)
+		let normalv = Vector(0, 0, -1)
+		let light = PointLight(Point(0, 0, -10), Color(r: 1, g: 1, b: 1))
+		let in_shadow = true
+		let result = m.lighting(light: light, point: position, eyeVector: eyev, normalVector: normalv, isInShadow: in_shadow)
+		XCTAssertEqual(result, Color(r: 0.1, g: 0.1, b: 0.1))
+		
+	}
 }
