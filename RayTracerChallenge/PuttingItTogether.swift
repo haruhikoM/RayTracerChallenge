@@ -284,6 +284,6 @@ extension Exercise {
 		camera.transform = Transform.view(Point(0,1.5,-5), Point(0,1,0), Vector(0,1,0))
 		
 		let canvas = camera.render(world)
-		save(text: canvas.toPPM, to: documentDirectory, named: fileName(chap: 7))
+		save(text: canvas.toPPM, to: documentDirectory, named: fileName(chap: 8))
 	}
 }

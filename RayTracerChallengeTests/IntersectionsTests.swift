@@ -99,4 +99,15 @@ class IntersectionsTests: XCTestCase {
 		XCTAssertEqual(comps.eyeVector, Vector(0, 0, -1))
 		XCTAssertEqual(comps.normalVector, Vector(0, 0, -1))
 	}
+	
+	// Chapter 8
+	func test_hitShouldOffsetPoint() throws {
+		let r = Ray(Point(0,0,-5), Vector(0,0,1))
+		let shape = Sphere()
+		shape.transform = Matrix.translation(0, 0, 1)
+		let i = Intersection<SceneObject>(5, shape)
+		guard let comps = Computation.prepare(i, r) else { XCTFail(); return }
+		XCTAssertTrue(comps.overPoint.z < -Double.epsilon/2)
+		XCTAssertTrue(comps.point.z > comps.overPoint.z)
+	}
 }

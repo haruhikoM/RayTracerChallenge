@@ -11,6 +11,10 @@ import Foundation
 struct World {
 	var light = PointLight(Point(0,0,0), .white)
 	var scene = [SceneObject]()
+
+	mutating func addToScene(objects: SceneObject...) {
+		scene += objects.map { $0 }
+	}
 }
 
 extension World {
@@ -43,11 +47,14 @@ extension World {
 	}
 	
 	func shadeHit(_ comps: Computation) -> Color {
+		let shadowed = isShadowed(comps.overPoint)
+		
 		return comps.object.material.lighting(
 										light: light,
 										point: comps.point,
 										eyeVector: comps.eyeVector,
-										normalVector: comps.normalVector
+										normalVector: comps.normalVector,
+										isInShadow: shadowed
 										)
 	}
 	

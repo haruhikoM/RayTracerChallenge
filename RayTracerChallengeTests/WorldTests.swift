@@ -110,4 +110,18 @@ class WorldTests: XCTestCase {
 		let p = Point(-2,2,-2)
 		XCTAssertFalse(cts.isShadowed(p))
 	}
+	
+	func _test_shadeHitIsGivenAnIntersectionInShadow() throws {
+		var w = World()
+		w.light = PointLight(Point(0,0,-10), Color(r: 1, g: 1, b: 1))
+		let s1 = Sphere()
+		let s2 = Sphere()
+		s2.transform = Matrix.translation(0, 0, 10)
+		w.addToScene(objects: s1, s2)
+		let r = Ray(Point(0,0,5), Vector(0,0,1))
+		let i = Intersection<SceneObject>(4, s2)
+		guard let comps = Computation.prepare(i, r) else { XCTFail(); return }
+		let c = w.shadeHit(comps)
+		XCTAssertEqual(c, Color(r: 0.1, g: 0.1, b: 0.1))
+	}
 }

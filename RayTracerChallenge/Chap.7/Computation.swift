@@ -15,6 +15,7 @@ struct Computation {
 	var eyeVector: Tuple    // Vector
 	var normalVector: Tuple // Vector
 	var inside = false
+	var overPoint: Tuple = .zero // Point
 	
 	static func prepare(_ i: Intersection<SceneObject>, _ r: Ray) -> Computation? {
 		switch i {
@@ -31,6 +32,7 @@ struct Computation {
 				comps.inside = true
 				comps.normalVector = -comps.normalVector
 			}
+			comps.overPoint = comps.point + comps.normalVector * Double.epsilon
 			return comps
 		case .multi(_):
 			let hit = i.hit()
