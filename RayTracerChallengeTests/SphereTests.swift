@@ -149,4 +149,9 @@ class SphereTests: XCTestCase {
 		cts.material = m
 		XCTAssertEqual(m, cts.material)
 	}
+	
+	// Chapter 9
+	func test_itsAShape() throws {
+		// XCTAssertTrue(cts is Shape) <- no need to test...
+	}
 }

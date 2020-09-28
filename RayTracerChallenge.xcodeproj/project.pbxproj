@@ -32,6 +32,7 @@
 		D77792372517499700CCD9FA /* TransformationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77792362517499700CCD9FA /* TransformationTests.swift */; };
 		D777923B25174A6500CCD9FA /* Transformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D777923A25174A6500CCD9FA /* Transformation.swift */; };
 		D7B897FB2521D40E00CB3A66 /* ShapesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B897FA2521D40E00CB3A66 /* ShapesTests.swift */; };
+		D7B897FF2521FB6A00CB3A66 /* PlaneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B897FE2521FB6A00CB3A66 /* PlaneTests.swift */; };
 		D7E0BF7C2510BC720044100B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E0BF7B2510BC720044100B /* AppDelegate.swift */; };
 		D7E0BF7E2510BC720044100B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E0BF7D2510BC720044100B /* ContentView.swift */; };
 		D7E0BF802510BC730044100B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7E0BF7F2510BC730044100B /* Assets.xcassets */; };
@@ -79,6 +80,7 @@
 		D77792362517499700CCD9FA /* TransformationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformationTests.swift; sourceTree = "<group>"; };
 		D777923A25174A6500CCD9FA /* Transformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transformation.swift; sourceTree = "<group>"; };
 		D7B897FA2521D40E00CB3A66 /* ShapesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapesTests.swift; sourceTree = "<group>"; };
+		D7B897FE2521FB6A00CB3A66 /* PlaneTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaneTests.swift; sourceTree = "<group>"; };
 		D7E0BF782510BC720044100B /* RayTracerChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RayTracerChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7E0BF7B2510BC720044100B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D7E0BF7D2510BC720044100B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 				D701DC66251C74460027FF17 /* WorldTests.swift */,
 				D701DC74251CF3560027FF17 /* CameraTests.swift */,
 				D7B897FA2521D40E00CB3A66 /* ShapesTests.swift */,
+				D7B897FE2521FB6A00CB3A66 /* PlaneTests.swift */,
 			);
 			path = RayTracerChallengeTests;
 			sourceTree = "<group>";
@@ -378,6 +381,7 @@
 				D7E0BF9D2510BCB20044100B /* TuplesTests.swift in Sources */,
 				D73740F1251490A600F9368E /* MatricesTests.swift in Sources */,
 				D72CDF072518D60D0069D88C /* SphereTests.swift in Sources */,
+				D7B897FF2521FB6A00CB3A66 /* PlaneTests.swift in Sources */,
 				D7E0BF922510BC740044100B /* RayTracerChallengeTests.swift in Sources */,
 				D72CDF1A251BAE510069D88C /* LightTests.swift in Sources */,
 				D701DC67251C74460027FF17 /* WorldTests.swift in Sources */,

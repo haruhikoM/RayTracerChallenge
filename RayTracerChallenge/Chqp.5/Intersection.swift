@@ -27,6 +27,7 @@ enum Intersection<U: Identifiable>: Equatable {
 
 	subscript(_ idx: Int) -> Intersection {
 		switch self {
+		case .one(_,_): return  idx == 0 ? self : .none
 		case let .multi(xs): return xs[idx]
 		default:
 			return .none
@@ -84,6 +85,7 @@ extension Intersection {
 	
 	var count: Int {
 		switch self {
+		case .one(_,_): return 1
 		case let .multi(xs): return xs.count
 		default:
 			return 0

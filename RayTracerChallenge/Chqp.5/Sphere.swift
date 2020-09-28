@@ -9,18 +9,26 @@
 import Foundation
 
 class Sphere: Shape {
-//	var id = UUID()
-//	var material = Material()
-	init(material: Material) {
-		super.init(Matrix.identity, material)
+	init(transform: Matrix = .identity, material: Material = Material()) {
+		super.init(transform, material)
 	}
-	
-	init(transform: Matrix) {
-		super.init(transform, Material())
-	}
-	
-	init() {
-		super.init(Matrix.identity, Material())
+}
+
+class Plane: Shape {
+	init(transform: Matrix = .identity, material: Material = Material()) {
+		super.init(transform, material)
+		
+		localIntersect = { s, r in
+			if abs(r.direction.y) < Double.epsilon {
+				return .none
+			}
+			let t = -r.origin.y / r.direction.y
+			return Intersection(t, s)
+		}
+		
+		localNormal = { _ , _ in
+			return Vector(0, 1, 0)
+		}
 	}
 }
 
@@ -29,12 +37,12 @@ class Shape: Identifiable {
 	var transform: Matrix
 	var material: Material
 	
-	fileprivate var localIntersect: (Shape, Ray) -> Intersection<Shape> = { s, r in
+	var localIntersect: (Shape, Ray) -> Intersection<Shape> = { s, r in
 		// Need to override inside child objects.
 		r.intersects(s)
 	}
 	
-	fileprivate var localNormal: (Shape, Tuple) -> Tuple = { _, p in
+	var localNormal: (Shape, Tuple) -> Tuple = { _, p in
 		// Need to override inside child objects.
 		Vector(p.x, p.y, p.z)
 	}

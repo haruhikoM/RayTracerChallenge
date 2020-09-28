@@ -248,7 +248,7 @@ extension Exercise {
 		let middle = Sphere()
 		middle.transform = Matrix.translation(-0.5, 1, 0.5)
 		middle.material = Material()
-		middle.material.color = Color(r: 0.1, g: 1, b: 0.5)
+		middle.material.color = Color(r: 246/255, g: 235/255, b: 97/255)
 		middle.material.diffuse = 0.7
 		middle.material.specular = 0.3
 		return middle
@@ -258,7 +258,8 @@ extension Exercise {
 		let right = Sphere()
 		right.transform = Matrix.translation(1.5, 0.5, -0.5) * Matrix.scaling(0.5, 0.5, 0.5)
 		right.material = Material()
-		right.material.color = Color(r: 0.5, g: 1, b: 0.1)
+		// Prince purple symbol #1
+		right.material.color = Color(r: 0.29, g: 0.17, b: 0.498)
 		right.material.diffuse = 0.7
 		right.material.specular = 0.3
 		return right
@@ -268,7 +269,8 @@ extension Exercise {
 		let left = Sphere()
 		left.transform = Matrix.translation(-1.5, 0.33, -0.75) * Matrix.scaling(0.33, 0.33, 0.33)
 		left.material = Material()
-		left.material.color = Color(r: 1, g: 0.8, b: 0.1)
+		// Liverpool FC red
+		left.material.color = Color(r: 200/255, g: 16/255, b: 46/255)
 		left.material.diffuse = 0.7
 		left.material.specular = 0.3
 		return left
@@ -279,6 +281,27 @@ extension Exercise {
 		var world = World()
 		world.light = PointLight(Point(-10,10,-10), .white)
 		world.scene = [floor, leftWall, rightWall, middleSphere, leftSphere, rightSphere]
+		
+		var camera = Camera(400, 200, Double.pi/3)
+		camera.transform = Transform.view(Point(0,1.5,-5), Point(0,1,0), Vector(0,1,0))
+		
+		let canvas = camera.render(world)
+		save(text: canvas.toPPM, to: documentDirectory, named: fileName(chap: 8))
+	}
+	
+	var planeFloor: Plane {
+		let floor = Plane()
+		floor.transform = Matrix.scaling(10, 0, 10)
+		floor.material = Material()
+		floor.material.color = Color(r: 1, g: 0.9, b: 0.9)
+		floor.material.specular = 0
+		return floor
+	}
+	
+	func chap9() {
+		var world = World()
+		world.light = PointLight(Point(-10,10,-10), .white)
+		world.scene = [floor, middleSphere, leftSphere, rightSphere]
 		
 		var camera = Camera(400, 200, Double.pi/3)
 		camera.transform = Transform.view(Point(0,1.5,-5), Point(0,1,0), Vector(0,1,0))
