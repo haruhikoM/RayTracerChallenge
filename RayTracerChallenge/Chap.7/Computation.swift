@@ -10,14 +10,14 @@ import Foundation
 
 struct Computation {
 	var t: Double
-	var object: SceneObject
+	var object: Shape
 	var point: Tuple        // Point
 	var eyeVector: Tuple    // Vector
 	var normalVector: Tuple // Vector
 	var inside = false
 	var overPoint: Tuple = .zero // Point
 	
-	static func prepare(_ i: Intersection<SceneObject>, _ r: Ray) -> Computation? {
+	static func prepare(_ i: Intersection<Shape>, _ r: Ray) -> Computation? {
 		switch i {
 		case let .one(t, obj):
 			var comps = Computation(

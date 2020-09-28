@@ -119,7 +119,7 @@ class WorldTests: XCTestCase {
 		s2.transform = Matrix.translation(0, 0, 10)
 		w.addToScene(objects: s1, s2)
 		let r = Ray(Point(0,0,5), Vector(0,0,1))
-		let i = Intersection<SceneObject>(4, s2)
+		let i = Intersection<Shape>(4, s2)
 		guard let comps = Computation.prepare(i, r) else { XCTFail(); return }
 		let c = w.shadeHit(comps)
 		XCTAssertEqual(c, Color(r: 0.1, g: 0.1, b: 0.1))

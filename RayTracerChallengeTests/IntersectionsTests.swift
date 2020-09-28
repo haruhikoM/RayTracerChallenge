@@ -72,7 +72,7 @@ class IntersectionsTests: XCTestCase {
 	func test_precomputingTheState() throws {
 		let r = Ray(Point(0,0,-5), Vector(0,0,1))
 		let shape = Sphere()
-		let i = Intersection<SceneObject>(4, shape)
+		let i = Intersection<Shape>(4, shape)
 		guard let comps = Computation.prepare(i,r) else { XCTFail(); return }
 		XCTAssertEqual(comps.t, i.t)
 		XCTAssertEqual(comps.object, i.object)
@@ -84,7 +84,7 @@ class IntersectionsTests: XCTestCase {
 	func test_hitOccursOnTheOutside() throws {
 		let r = Ray(Point(0,0,-5), Vector(0,0,1))
 		let shape = Sphere()
-		let i = Intersection<SceneObject>(4, shape)
+		let i = Intersection<Shape>(4, shape)
 		guard let comps = Computation.prepare(i,r) else { XCTFail(); return }
 		XCTAssertEqual(comps.inside, false)
 	}
@@ -92,7 +92,7 @@ class IntersectionsTests: XCTestCase {
 	func test_hitOccursOnTheInside() throws {
 		let r = Ray(Point(0,0,0), Vector(0,0,1))
 		let shape = Sphere()
-		let i = Intersection<SceneObject>(1, shape)
+		let i = Intersection<Shape>(1, shape)
 		guard let comps = Computation.prepare(i,r) else { XCTFail(); return }
 		XCTAssertEqual(comps.inside, true)
 		XCTAssertEqual(comps.point , Point(0, 0, 1))
@@ -105,7 +105,7 @@ class IntersectionsTests: XCTestCase {
 		let r = Ray(Point(0,0,-5), Vector(0,0,1))
 		let shape = Sphere()
 		shape.transform = Matrix.translation(0, 0, 1)
-		let i = Intersection<SceneObject>(5, shape)
+		let i = Intersection<Shape>(5, shape)
 		guard let comps = Computation.prepare(i, r) else { XCTFail(); return }
 		XCTAssertTrue(comps.overPoint.z < -Double.epsilon/2)
 		XCTAssertTrue(comps.point.z > comps.overPoint.z)

@@ -90,7 +90,7 @@ class SphereTests: XCTestCase {
 		XCTAssertEqual(t, cts.transform)
 	}
 	
-	func test_intersectingAScaledSphereWithRay() throws {
+	func RETIRED_test_intersectingAScaledSphereWithRay() throws {
 		let r = Ray(Point(0,0,-5), Vector(0,0,1))
 		cts.transform = Matrix.scaling(2, 2, 2)
 		var xs = r.intersects(cts)
@@ -138,12 +138,12 @@ class SphereTests: XCTestCase {
 		XCTAssertEqual(Vector(0, 0.97014, -0.24254), n)
 	}
 	
-	func test_hasDefaultMaterial() throws {
+	func RETIRED_test_hasDefaultMaterial() throws {
 		let m = cts.material
 		XCTAssertEqual(m, Material())
 	}
 	
-	func test_mayBeAssignedMaterial() throws {
+	func RETIRED_test_mayBeAssignedMaterial() throws {
 		var m = Material()
 		m.ambient = 1
 		cts.material = m

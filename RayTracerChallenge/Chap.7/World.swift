@@ -10,9 +10,9 @@ import Foundation
 
 struct World {
 	var light = PointLight(Point(0,0,0), .white)
-	var scene = [SceneObject]()
+	var scene = [Shape]()
 
-	mutating func addToScene(objects: SceneObject...) {
+	mutating func addToScene(objects: Shape...) {
 		scene += objects.map { $0 }
 	}
 }
@@ -31,9 +31,9 @@ extension World {
 		return false
 	}
 	
-	func intersects(_ ray: Ray) -> Intersection<SceneObject> {
+	func intersects(_ ray: Ray) -> Intersection<Shape> {
 		let arr = scene.map { ray.intersects($0) }
-		var result = Intersection<SceneObject>.none
+		var result = Intersection<Shape>.none
 		for ix in arr {
 			switch ix {
 			case .one(_,_): result.add(ix)
@@ -79,13 +79,13 @@ extension World {
 	// It looks like this can't be done simply searching
 	// same identity object but doing it so on same properties.
 	//
-	func contains(identicalTo s: SceneObject) -> Bool {
+	func contains(identicalTo s: Shape) -> Bool {
 		scene.contains {
 			$0.material == s.material && $0.transform == s.transform
 		}
 	}
 	
-	func contains(sameObject s: SceneObject) -> Bool {
+	func contains(sameObject s: Shape) -> Bool {
 		scene.contains { $0.id == s.id	}
 	}
 	
