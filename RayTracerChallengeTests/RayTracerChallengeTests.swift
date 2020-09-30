@@ -20,5 +20,6 @@ class RayTracerChallengeTests: XCTestCase {
 	func _test_chap6() throws {	e.chap6() }
 	func _test_chap7() throws {	e.chap7() }
 	func _test_chap8() throws {	e.chap7() }
-	func test_chap9() throws {	e.chap9() }
+	func _test_chap9() throws {	e.chap9() }
+	func _test_chap10() throws {	e.chap10_stripeTrial() }
 }

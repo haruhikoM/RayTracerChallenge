@@ -14,6 +14,7 @@ struct Material: Equatable {
 	var diffuse: Double = 0.9
 	var specular: Double = 0.9
 	var shininess: Double = 200.0
+	var pattern: Pattern?
 	
 	static func == (lhs: Material, rhs: Material) -> Bool {
 		guard
@@ -29,10 +30,12 @@ struct Material: Equatable {
 }
 
 extension Material {
-	func lighting(light: PointLight, point: Tuple, eyeVector: Tuple, normalVector: Tuple, isInShadow: Bool = false) -> Color {
+	func lighting(object: Shape = Sphere(), light: PointLight, point: Tuple, eyeVector: Tuple, normalVector: Tuple, isInShadow: Bool = false) -> Color {
+		let _color = pattern != nil ? pattern!.stripe(of: object, at: point) : self.color
+		
 		var _ambient, _diffuse, _specular: Color
 		
-		let effectiveColor = color * light.intensity
+		let effectiveColor = _color * light.intensity
 		let lightV = (light.position - point).normalizing()
 		_ambient = effectiveColor * self.ambient
 		

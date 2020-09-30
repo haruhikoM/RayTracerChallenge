@@ -62,6 +62,12 @@ class Shape: Identifiable {
 }
 
 extension Shape {
+	func pattern(of pattern: Pattern, at point: Tuple /*Point*/) -> Color {
+		.white
+	}
+}
+
+extension Shape {
 	static var testShape: Shape {
 		return Shape(Matrix.identity, Material())
 	}

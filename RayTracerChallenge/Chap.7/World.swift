@@ -50,6 +50,7 @@ extension World {
 		let shadowed = isShadowed(comps.overPoint)
 		
 		return comps.object.material.lighting(
+										object: comps.object,
 										light: light,
 										point: comps.point,
 										eyeVector: comps.eyeVector,

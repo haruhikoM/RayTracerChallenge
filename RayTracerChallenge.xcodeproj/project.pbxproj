@@ -33,6 +33,8 @@
 		D777923B25174A6500CCD9FA /* Transformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D777923A25174A6500CCD9FA /* Transformation.swift */; };
 		D7B897FB2521D40E00CB3A66 /* ShapesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B897FA2521D40E00CB3A66 /* ShapesTests.swift */; };
 		D7B897FF2521FB6A00CB3A66 /* PlaneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B897FE2521FB6A00CB3A66 /* PlaneTests.swift */; };
+		D7B89803252229FC00CB3A66 /* PatternTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B89802252229FC00CB3A66 /* PatternTests.swift */; };
+		D7B8980825222A8200CB3A66 /* Pattern.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B8980725222A8200CB3A66 /* Pattern.swift */; };
 		D7E0BF7C2510BC720044100B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E0BF7B2510BC720044100B /* AppDelegate.swift */; };
 		D7E0BF7E2510BC720044100B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E0BF7D2510BC720044100B /* ContentView.swift */; };
 		D7E0BF802510BC730044100B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7E0BF7F2510BC730044100B /* Assets.xcassets */; };
@@ -81,6 +83,8 @@
 		D777923A25174A6500CCD9FA /* Transformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transformation.swift; sourceTree = "<group>"; };
 		D7B897FA2521D40E00CB3A66 /* ShapesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapesTests.swift; sourceTree = "<group>"; };
 		D7B897FE2521FB6A00CB3A66 /* PlaneTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaneTests.swift; sourceTree = "<group>"; };
+		D7B89802252229FC00CB3A66 /* PatternTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatternTests.swift; sourceTree = "<group>"; };
+		D7B8980725222A8200CB3A66 /* Pattern.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pattern.swift; sourceTree = "<group>"; };
 		D7E0BF782510BC720044100B /* RayTracerChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RayTracerChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7E0BF7B2510BC720044100B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D7E0BF7D2510BC720044100B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -169,6 +173,14 @@
 			path = Chap.4;
 			sourceTree = "<group>";
 		};
+		D7B8980625222A6F00CB3A66 /* Chap.10 */ = {
+			isa = PBXGroup;
+			children = (
+				D7B8980725222A8200CB3A66 /* Pattern.swift */,
+			);
+			path = Chap.10;
+			sourceTree = "<group>";
+		};
 		D7E0BF6F2510BC720044100B = {
 			isa = PBXGroup;
 			children = (
@@ -190,6 +202,7 @@
 		D7E0BF7A2510BC720044100B /* RayTracerChallenge */ = {
 			isa = PBXGroup;
 			children = (
+				D7B8980625222A6F00CB3A66 /* Chap.10 */,
 				D753209C251388110026EF13 /* PuttingItTogether.swift */,
 				D701DC65251C740E0027FF17 /* Chap.7 */,
 				D72CDF14251B3CAF0069D88C /* Chap.6 */,
@@ -237,6 +250,7 @@
 				D701DC74251CF3560027FF17 /* CameraTests.swift */,
 				D7B897FA2521D40E00CB3A66 /* ShapesTests.swift */,
 				D7B897FE2521FB6A00CB3A66 /* PlaneTests.swift */,
+				D7B89802252229FC00CB3A66 /* PatternTests.swift */,
 			);
 			path = RayTracerChallengeTests;
 			sourceTree = "<group>";
@@ -351,6 +365,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7B8980825222A8200CB3A66 /* Pattern.swift in Sources */,
 				D72CDF26251BAFBB0069D88C /* Material.swift in Sources */,
 				D72CDF0F251A05240069D88C /* Intersection.swift in Sources */,
 				D701DC79251CF3630027FF17 /* Camera.swift in Sources */,
@@ -383,6 +398,7 @@
 				D72CDF072518D60D0069D88C /* SphereTests.swift in Sources */,
 				D7B897FF2521FB6A00CB3A66 /* PlaneTests.swift in Sources */,
 				D7E0BF922510BC740044100B /* RayTracerChallengeTests.swift in Sources */,
+				D7B89803252229FC00CB3A66 /* PatternTests.swift in Sources */,
 				D72CDF1A251BAE510069D88C /* LightTests.swift in Sources */,
 				D701DC67251C74460027FF17 /* WorldTests.swift in Sources */,
 				D7532099251322870026EF13 /* CanvasTests.swift in Sources */,

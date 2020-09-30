@@ -309,4 +309,19 @@ extension Exercise {
 		let canvas = camera.render(world)
 		save(text: canvas.toPPM, to: documentDirectory, named: fileName(chap: 8))
 	}
+	
+	func chap10_stripeTrial() {
+		let stripePattern = Pattern.stripe(.blue, .green)
+		var world = World()
+		world.light = PointLight(Point(-10,10,-10), .white)
+		let  cp = floor
+		cp.material.pattern = stripePattern
+		world.scene = [cp, middleSphere, leftSphere, rightSphere]
+		
+		var camera = Camera(100, 50, Double.pi/3)
+		camera.transform = Transform.view(Point(0,1.5,-5), Point(0,1,0), Vector(0,1,0))
+		
+		let canvas = camera.render(world)
+		save(text: canvas.toPPM, to: documentDirectory, named: fileName(chap: 8))
+	}
 }
