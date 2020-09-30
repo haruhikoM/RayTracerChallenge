@@ -77,16 +77,30 @@ class PatternTests: XCTestCase {
 		let s = Sphere()
 		s.transform = Matrix.scaling(2, 2, 2)
 		let testPattern = Pattern._test
-		let c = s.pattern(of: testPattern, at: Point(2,3,4))
+		let c = testPattern.pattern(of: s, at: Point(2,3,4))
 		XCTAssertEqual(c, Color(r: 1, g: 1.5, b: 2))
 	}
 	
-	func test_withAnObjectTransformation() throws {
+	func test_withAnPatternTransformation() throws {
 		let s = Sphere()
 		var testPattern = Pattern._test
 		testPattern.transform = Matrix.scaling(2, 2, 2)
-		let c = s.pattern(of: testPattern, at: Point(2,3,4))
+		let c = testPattern.pattern(of: s, at: Point(2,3,4))
 		XCTAssertEqual(c, Color(r: 1, g: 1.5, b: 2))
 	}
-
+	
+	func test_withBothPatternAndObjectTransformation() throws {
+		let s = Sphere()
+		s.transform = Matrix.scaling(2, 2, 2)
+		var testPattern = Pattern._test
+		testPattern.transform = Matrix.translation(0.5, 1, 1.5)
+		let c = testPattern.pattern(of: s, at: Point(2.5,3,3.5))
+		XCTAssertEqual(c, Color(r: 0.75, g: 0.5, b: 0.25))
+	}
+	
+	// Gradient
+	func test_gradientLinearlyInterpolatesBetweenColors() throws {
+		let pattern = Pattern.gradient(.white, .black)
+		XCTAssertEqual(pattern.pattern(at: Point(0,0,0)), .white)
+	}
 }

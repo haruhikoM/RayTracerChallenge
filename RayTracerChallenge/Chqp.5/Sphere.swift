@@ -61,18 +61,6 @@ class Shape: Identifiable {
 	}
 }
 
-extension Shape {
-	func pattern(of pattern: Pattern, at point: Tuple /*Point*/) -> Color {
-		.white
-	}
-}
-
-extension Shape {
-	static var testShape: Shape {
-		return Shape(Matrix.identity, Material())
-	}
-}
-
 extension Shape: Equatable {
 	static func == (lhs: Shape, rhs: Shape) -> Bool {
 		lhs.id == rhs.id
@@ -90,4 +78,12 @@ extension Shape {
 		return worldNormal.normalizing() //Vector(point.x, point.y, point.z)
 	}
 }
+
+// For a test
+extension Shape {
+	static var testShape: Shape {
+		return Shape(Matrix.identity, Material())
+	}
+}
+
 

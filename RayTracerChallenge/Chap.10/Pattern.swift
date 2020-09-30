@@ -21,9 +21,27 @@ struct Pattern {
 	static func stripe(_ color1: Color, _ color2: Color) -> Pattern {
 		Pattern(color1, color2)
 	}
+	
+	static func gradient(_ color1: Color, _ color2: Color) -> Pattern {
+		
+	}
+}
+
+struct Stripe: Pattern {
+	
 }
 
 extension Pattern {
+	func pattern(at point: Tuple) -> Color {
+		return Color(r: point.x, g: point.y, b: point.z)
+	}
+	
+	func pattern(of object: Shape, at point: Tuple /*Point*/) -> Color {
+		let patternTransformInversed = self.transform.inverse()
+		let objectTransformInversed = object.transform.inverse()
+		return pattern(at: patternTransformInversed * objectTransformInversed * point)
+	}
+	
 	func stripe(at point: Tuple) -> Color {
 		if point.x == 0 { return a }
 		if point.x > 0 {
