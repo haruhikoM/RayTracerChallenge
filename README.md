@@ -14,9 +14,9 @@ http://raytracerchallenge.com
 |------|------|------
 |![Chap 6](https://github.com/haruhikoM/RayTracerChallenge/blob/main/RenderedImages/RTC-Chap5.png)|![Chap 7](https://github.com/haruhikoM/RayTracerChallenge/blob/main/RenderedImages/RTC-Chap7.png)|![Chap 8](https://github.com/haruhikoM/RayTracerChallenge/blob/main/RenderedImages/RTC-Chap8.png)
 |
-|Chap 9|||
+|Chap 9|Chap10||
 |------|------|------
-|![Chap 9](https://github.com/haruhikoM/RayTracerChallenge/blob/main/RenderedImages/RTC-Chap9.png)|||
+|![Chap 9](https://github.com/haruhikoM/RayTracerChallenge/blob/main/RenderedImages/RTC-Chap9.png)|![Chap 9](https://github.com/haruhikoM/RayTracerChallenge/blob/main/RenderedImages/RTC-Chap10.png)||
 
 
 
@@ -42,7 +42,10 @@ http://raytracerchallenge.com
 
 - [x] Shadows
 - [x] Planes
-- [ ] Patterns
+- [x] Patterns
+	
+	Tests are passed but implementations are far from perfect.
+	
 - [ ] Reflection and Refraction
 - [ ] Cubes
 - [ ] Cylinders

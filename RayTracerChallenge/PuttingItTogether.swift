@@ -248,7 +248,7 @@ extension Exercise {
 		let middle = Sphere()
 		middle.transform = Matrix.translation(-0.5, 1, 0.5)
 		middle.material = Material()
-		middle.material.color = Color(r: 246/255, g: 235/255, b: 97/255)
+		middle.material.color = .green //Color(r: 246/255, g: 235/255, b: 97/255)
 		middle.material.diffuse = 0.7
 		middle.material.specular = 0.3
 		return middle
@@ -259,7 +259,8 @@ extension Exercise {
 		right.transform = Matrix.translation(1.5, 0.5, -0.5) * Matrix.scaling(0.5, 0.5, 0.5)
 		right.material = Material()
 		// Prince purple symbol #1
-		right.material.color = Color(r: 0.29, g: 0.17, b: 0.498)
+//		right.material.color = Color(r: 0.29, g: 0.17, b: 0.498)
+		right.material.color = .white
 		right.material.diffuse = 0.7
 		right.material.specular = 0.3
 		return right
@@ -291,11 +292,23 @@ extension Exercise {
 	
 	var planeFloor: Plane {
 		let floor = Plane()
-		floor.transform = Matrix.scaling(10, 0, 10)
+		floor.transform = Matrix.scaling(10, 1, 10) *
+			Matrix.translation(0, -1, 0)
 		floor.material = Material()
 		floor.material.color = Color(r: 1, g: 0.9, b: 0.9)
 		floor.material.specular = 0
 		return floor
+	}
+	
+	var planeRightWall: Plane {
+//		let ring = Ring(.liverpoolRed, .liverpoolGold, patternScaling)
+		let rightWall = Plane()
+		rightWall.transform = Matrix.translation(0, 0, 5) *
+			Matrix.rotation(by: .y, radians: Double.pi/4) *
+			Matrix.rotation(by: .x, radians: Double.pi/2) *
+			Matrix.scaling(10, 1, 10)
+//		rightWall.material.pattern = ring
+		return rightWall
 	}
 	
 	func chap9() {
@@ -307,21 +320,59 @@ extension Exercise {
 		camera.transform = Transform.view(Point(0,1.5,-5), Point(0,1,0), Vector(0,1,0))
 		
 		let canvas = camera.render(world)
-		save(text: canvas.toPPM, to: documentDirectory, named: fileName(chap: 8))
+		save(text: canvas.toPPM, to: documentDirectory, named: fileName(chap: 9))
 	}
 	
 	func chap10_stripeTrial() {
-		let stripePattern = Pattern.stripe(.blue, .green)
+		var stripePattern = Stripe(.blue, .green)
+		stripePattern.transform = patternScaling
 		var world = World()
 		world.light = PointLight(Point(-10,10,-10), .white)
 		let  cp = floor
 		cp.material.pattern = stripePattern
 		world.scene = [cp, middleSphere, leftSphere, rightSphere]
 		
-		var camera = Camera(100, 50, Double.pi/3)
+		var camera = Camera(400, 200, Double.pi/3)
 		camera.transform = Transform.view(Point(0,1.5,-5), Point(0,1,0), Vector(0,1,0))
 		
 		let canvas = camera.render(world)
-		save(text: canvas.toPPM, to: documentDirectory, named: fileName(chap: 8))
+		save(text: canvas.toPPM, to: documentDirectory, named: fileName(chap: 10))
+	}
+	
+	var patternScaling: Matrix {
+		Matrix.scaling(0.1, 0.1, 0.1)
+	}
+	
+	func chap10() {
+//		let ring = Ring(.liverpoolRed, .liverpoolGold)
+		let checker = Checker(.princeSymbol1, .princeSymbol2, patternScaling)
+		var stripe = Stripe(.blue, .green)
+		stripe.transform = patternScaling
+		
+		let rotate = Matrix.rotation(by: .x, radians: 70 * Double.pi/180)
+		let ring = Ring(.liverpoolRed, .liverpoolGold, Matrix.scaling(0.2, 0.2, 0.2) * rotate)
+		
+		var world = World()
+		world.light = PointLight(Point(-10,10,-10), .white)
+		
+		let  floorcp = planeFloor
+		floorcp.material.pattern = checker
+		
+		let middlecp = middleSphere
+		middlecp.material.pattern = ring
+		
+		let planeRWallcp = planeRightWall
+		planeRWallcp.material.pattern = Gradient(.liverpoolGold, .white, Matrix.rotation(by: .z, radians: 45 * Double.pi/180))
+		
+		let rightcp = rightSphere
+		rightcp.material.pattern = Stripe(.blue, .green, Matrix.scaling(0.2, 0.2, 0.2))
+		
+		world.scene = [floorcp, middlecp, planeRWallcp, leftWall, leftSphere, rightcp]
+		
+		var camera = Camera(400, 200, Double.pi/3)
+		camera.transform = Transform.view(Point(0,1.5,-5), Point(0,1,0), Vector(0,1,0))
+		
+		let canvas = camera.render(world)
+		save(text: canvas.toPPM, to: documentDirectory, named: fileName(chap: 10))
 	}
 }

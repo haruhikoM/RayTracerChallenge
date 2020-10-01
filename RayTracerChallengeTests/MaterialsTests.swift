@@ -92,7 +92,7 @@ class MaterialsTests: XCTestCase {
 	
 	// Chpater 10 - Patterns
 	func test_lightingWithPatternApplied() throws {
-		cts.pattern = Pattern.stripe(.white, .black)
+		cts.pattern = Stripe(.white, .black)
 		cts.ambient = 1
 		cts.diffuse = 0
 		cts.specular = 0

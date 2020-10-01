@@ -31,7 +31,14 @@ struct Material: Equatable {
 
 extension Material {
 	func lighting(object: Shape = Sphere(), light: PointLight, point: Tuple, eyeVector: Tuple, normalVector: Tuple, isInShadow: Bool = false) -> Color {
-		let _color = pattern != nil ? pattern!.stripe(of: object, at: point) : self.color
+		let _color: Color
+		if let p = pattern {
+			_color = p.pattern(of: object, at: point)
+		}
+		else {
+			_color = color
+		}
+//		let _color = pattern != nil ? pattern!.pattern(of: object, at: point) : self.color
 		
 		var _ambient, _diffuse, _specular: Color
 		
