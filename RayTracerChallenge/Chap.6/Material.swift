@@ -15,6 +15,9 @@ struct Material: Equatable {
 	var specular: Double = 0.9
 	var shininess: Double = 200.0
 	var pattern: Pattern?
+	var reflective: Double = 0.0
+	var transparency: Double = 0.0
+	var refractiveIndex: Double = 1.0
 	
 	static func == (lhs: Material, rhs: Material) -> Bool {
 		guard

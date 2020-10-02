@@ -154,4 +154,13 @@ class SphereTests: XCTestCase {
 	func test_itsAShape() throws {
 		// XCTAssertTrue(cts is Shape) <- no need to test...
 	}
+	
+	// Chapter 11 - Transparency & Refraction
+	// #1
+	func test_helperForGlassySphere() throws {
+		let s = Sphere.glassy
+		XCTAssertEqual(s.transform, Matrix.identity)
+		XCTAssertEqual(s.material.transparency, 1.0)
+		XCTAssertEqual(s.material.refractiveIndex, 1.5)
+	}
 }

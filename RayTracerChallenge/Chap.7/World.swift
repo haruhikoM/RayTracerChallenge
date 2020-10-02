@@ -46,10 +46,10 @@ extension World {
 		return result.sort()
 	}
 	
-	func shadeHit(_ comps: Computation) -> Color {
+	func shadeHit(_ comps: Computation, _ remaining: Int = 4) -> Color {
 		let shadowed = isShadowed(comps.overPoint)
 		
-		return comps.object.material.lighting(
+		let surface = comps.object.material.lighting(
 										object: comps.object,
 										light: light,
 										point: comps.point,
@@ -57,10 +57,12 @@ extension World {
 										normalVector: comps.normalVector,
 										isInShadow: shadowed
 										)
+		let reflected = reflectedColor(comps, remaining)
+		return surface + reflected
 	}
 	
 	
-	func color(at r: Ray) -> Color {
+	func color(at r: Ray, _ remaining: Int = 4) -> Color {
 		let intersect = intersects(r)
 		let hit = intersect.hit()
 		
@@ -68,7 +70,7 @@ extension World {
 		case .none: return .black
 		case .one(_, _):
 			if let comps = Computation.prepare(intersect, r) {
-				return shadeHit(comps)
+				return shadeHit(comps, remaining)
 			}
 			fatalError()
 		case .multi(_):
@@ -90,6 +92,25 @@ extension World {
 		scene.contains { $0.id == s.id	}
 	}
 	
+	func reflectedColor(_ comps: Computation?, _ remaining: Int = 4) -> Color {
+		guard
+			let comps = comps,
+			let reflectV = comps.reflectVector
+		else {
+			fatalError("comps should not be nil")
+		}
+		
+		if
+			comps.object.material.reflective == 0 || remaining <= 0
+		{
+			return .black
+		}
+
+		let reflectRay = Ray(comps.overPoint, reflectV)
+		let color = self.color(at: reflectRay, remaining - 1)
+		
+		return color * comps.object.material.reflective
+	}
 }
 
 extension World {

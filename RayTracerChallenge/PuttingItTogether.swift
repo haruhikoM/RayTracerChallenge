@@ -218,7 +218,7 @@ extension Exercise {
 	var floor: Sphere {
 		let floor = Sphere()
 		floor.transform = Matrix.scaling(10, 0.01, 10)
-		floor.material = Material()
+		floor.material = Material(reflective: 0.0)
 		floor.material.color = Color(r: 1, g: 0.9, b: 0.9)
 		floor.material.specular = 0
 		return floor
@@ -247,7 +247,7 @@ extension Exercise {
 	var middleSphere: Sphere {
 		let middle = Sphere()
 		middle.transform = Matrix.translation(-0.5, 1, 0.5)
-		middle.material = Material()
+		middle.material = Material(reflective: 0.2)
 		middle.material.color = .green //Color(r: 246/255, g: 235/255, b: 97/255)
 		middle.material.diffuse = 0.7
 		middle.material.specular = 0.3
@@ -294,7 +294,7 @@ extension Exercise {
 		let floor = Plane()
 		floor.transform = Matrix.scaling(10, 1, 10) *
 			Matrix.translation(0, -1, 0)
-		floor.material = Material()
+		floor.material = Material(reflective: 0.5)
 		floor.material.color = Color(r: 1, g: 0.9, b: 0.9)
 		floor.material.specular = 0
 		return floor
@@ -374,5 +374,38 @@ extension Exercise {
 		
 		let canvas = camera.render(world)
 		save(text: canvas.toPPM, to: documentDirectory, named: fileName(chap: 10))
+	}
+	
+	func chap11_1() {
+//		let ring = Ring(.liverpoolRed, .liverpoolGold)
+		let checker = Checker(.princeSymbol1, .princeSymbol2, patternScaling)
+		var stripe = Stripe(.blue, .green)
+		stripe.transform = patternScaling
+		
+		let rotate = Matrix.rotation(by: .x, radians: 70 * Double.pi/180)
+		let ring = Ring(.liverpoolRed, .liverpoolGold, Matrix.scaling(0.2, 0.2, 0.2) * rotate)
+		
+		var world = World()
+		world.light = PointLight(Point(-10,10,-10), .white)
+		
+		let  floorcp = planeFloor
+		floorcp.material.pattern = checker
+		
+		let middlecp = middleSphere
+		middlecp.material.pattern = ring
+		
+		let planeRWallcp = planeRightWall
+		planeRWallcp.material.pattern = Gradient(.liverpoolGold, .white, Matrix.rotation(by: .z, radians: 45 * Double.pi/180))
+		
+		let rightcp = rightSphere
+		rightcp.material.pattern = Stripe(.blue, .green, Matrix.scaling(0.2, 0.2, 0.2))
+		
+		world.scene = [floorcp, middlecp, planeRWallcp, leftWall, leftSphere, rightcp]
+		
+		var camera = Camera(200, 100, Double.pi/3)
+		camera.transform = Transform.view(Point(0,1.5,-5), Point(0,1,0), Vector(0,1,0))
+		
+		let canvas = camera.render(world)
+		save(text: canvas.toPPM, to: documentDirectory, named: fileName(chap: 11_1))
 	}
 }

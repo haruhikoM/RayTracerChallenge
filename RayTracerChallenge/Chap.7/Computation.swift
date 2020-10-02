@@ -16,6 +16,7 @@ struct Computation {
 	var normalVector: Tuple // Vector
 	var inside = false
 	var overPoint: Tuple = .zero // Point
+	var reflectVector: Tuple?
 	
 	static func prepare(_ i: Intersection<Shape>, _ r: Ray) -> Computation? {
 		switch i {
@@ -33,6 +34,7 @@ struct Computation {
 				comps.normalVector = -comps.normalVector
 			}
 			comps.overPoint = comps.point + comps.normalVector * Double.epsilon
+			comps.reflectVector = r.direction.reflect(comps.normalVector)
 			return comps
 		case .multi(_):
 			let hit = i.hit()

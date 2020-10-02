@@ -111,7 +111,7 @@ class WorldTests: XCTestCase {
 		XCTAssertFalse(cts.isShadowed(p))
 	}
 	
-	func _test_shadeHitIsGivenAnIntersectionInShadow() throws {
+	func test_shadeHitIsGivenAnIntersectionInShadow() throws {
 		var w = World()
 		w.light = PointLight(Point(0,0,-10), Color(r: 1, g: 1, b: 1))
 		let s1 = Sphere()
@@ -123,5 +123,33 @@ class WorldTests: XCTestCase {
 		guard let comps = Computation.prepare(i, r) else { XCTFail(); return }
 		let c = w.shadeHit(comps)
 		XCTAssertEqual(c, Color(r: 0.1, g: 0.1, b: 0.1))
+	}
+
+	// Chapter 11 Reflection #6
+	func test_colorAtWithMutuallyReflectiveSurface() throws {
+		cts.light = PointLight(Point(0,0,0), .white)
+		let lower = Plane(transform: Matrix.translation(0, -1, 0), material: Material(reflective: 1))
+		cts.addToScene(objects: lower)
+		let upper = Plane(transform: Matrix.translation(0, 1, 0), material: Material(reflective: 1))
+		cts.addToScene(objects: upper)
+		let r = Ray(Point(0,0,0), Vector(0,1,0))
+		
+		let _ = cts.color(at: r)
+		// Look for what happens when the program doesn’t terminate.
+		XCTAssertEqual(2, 1+1)
+	}
+	 
+	// Reflection #7
+	func test_reflectedColorAtMaximumRecursiveDepth() throws {
+		let shape = Plane(
+			transform: Matrix.translation(0, -1, 0),
+			material: Material(reflective: 0.5)
+		)
+		cts.addToScene(objects: shape)
+		let r = Ray(Point(0,0,-3), Vector(0,-sqrt(2)/2,sqrt(2)/2))
+		let i = Intersection<Shape>(sqrt(2), shape)
+		let comps = Computation.prepare(i, r)
+		let color = cts.reflectedColor(comps, 0)
+		XCTAssertEqual(color, .black)
 	}
 }

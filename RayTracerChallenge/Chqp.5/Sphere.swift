@@ -14,6 +14,13 @@ class Sphere: Shape {
 	}
 }
 
+extension Sphere {
+	static var glassy: Sphere {
+		let m = Material(transparency: 1.0, refractiveIndex: 1.5)
+		return Sphere(material: m)
+	}
+}
+
 class Plane: Shape {
 	init(transform: Matrix = .identity, material: Material = Material()) {
 		super.init(transform, material)

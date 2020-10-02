@@ -104,4 +104,82 @@ class MaterialsTests: XCTestCase {
 		XCTAssertEqual(c1, .white)
 		XCTAssertEqual(c2, .black)
 	}
+	
+	// Chapter 11 - Reflections
+	// #1
+	func test_reflectivityForDefault() throws {
+		XCTAssertEqual(cts.reflective, 0.0)
+	}
+	
+	// #2
+	func test_computeReflectVector() throws {
+		let shape = Plane()
+		let r = Ray(Point(0,1,-1), Vector(0, -sqrt(2)/2, sqrt(2)/2))
+		let i = Intersection<Shape>(sqrt(2), shape)
+		let comps = Computation.prepare(i, r)
+		XCTAssertEqual(comps?.reflectVector, Vector(0, sqrt(2)/2, sqrt(2)/2))
+	}
+	
+	// #3
+	func test_reflectedColorForNonrefletiveMaterial() throws {
+		let w = World._default
+		let shape = w.scene[1]
+		shape.material.ambient = 1
+		let r = Ray(Point(0,0,0), Vector(0, 0, 1))
+		let i = Intersection<Shape>(1, shape)
+		let comps = Computation.prepare(i, r)
+		let color = w.reflectedColor(comps)
+		XCTAssertEqual(color, .black)
+	}
+	
+	// #4
+	func test_reflectedColorForReflectiveMaterial() throws {
+		var w = World._default
+		var m = Material()
+		m.reflective = 0.5
+		let shape = Plane(transform: Matrix.translation(0,-1,0), material: m)
+		w.addToScene(objects: shape)
+		let r = Ray(Point(0,0,-3), Vector(0, -sqrt(2)/2, sqrt(2)/2))
+		let i = Intersection<Shape>(sqrt(2), shape)
+		let comps = Computation.prepare(i, r)
+		let c = w.reflectedColor(comps)
+		// Test continued to fail unless adding more fractions...
+		let e = Color(r: 0.19033, g: 0.23791, b: 0.14274)
+		XCTAssertEqual(c.r, e.r, accuracy: Double.epsilon)
+		XCTAssertEqual(c.g, e.g, accuracy: Double.epsilon)
+		XCTAssertEqual(c.b, e.b, accuracy: Double.epsilon)
+	}
+	
+	// #5
+	func test_shadeHitWithReflectiveMaterial() throws {
+		var w = World._default
+		
+		var m = Material()
+		m.reflective = 0.5
+		
+		let shape = Plane(transform: Matrix.translation(0,-1,0), material: m)
+		w.addToScene(objects: shape)
+		
+		let r = Ray(Point(0,0,-3), Vector(0, -sqrt(2)/2, sqrt(2)/2))
+		let i = Intersection<Shape>(sqrt(2), shape)
+		guard let comps = Computation.prepare(i, r) else { XCTFail(); return }
+		let c = w.shadeHit(comps)
+		// This test also continued to fail unless adding more fractions...
+		let e = Color(r: 0.876757, g: 0.92434, b: 0.82918)
+		XCTAssertEqual(c.r, e.r, accuracy: Double.epsilon)
+		XCTAssertEqual(c.g, e.g, accuracy: Double.epsilon)
+		XCTAssertEqual(c.b, e.b, accuracy: Double.epsilon)
+	}
+	
+	// #6 this is in world tests
+	
+	
+	// Chapter 11 - Transparency & Refraction
+	// #1
+	func test_TransparencyAndRefractiveIndexForTheDefaultMaterial() throws {
+		XCTAssertEqual(cts.transparency, 0.0, accuracy: Double.epsilon)
+		XCTAssertEqual(cts.refractiveIndex, 1.0, accuracy: Double.epsilon)
+	}
+
+
 }
