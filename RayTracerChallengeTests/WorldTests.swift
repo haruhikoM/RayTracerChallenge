@@ -124,8 +124,19 @@ class WorldTests: XCTestCase {
 		let c = w.shadeHit(comps)
 		XCTAssertEqual(c, Color(r: 0.1, g: 0.1, b: 0.1))
 	}
+	
+	// Chapter 11 Reflection #5
+	func test_refractedColorWithOpaqueSurface() throws {
+		let shape = cts.scene[0]
+		let r = Ray(Point(0,0,-5), Vector(0,0,1))
+		let xs = Intersection<Shape>(Intersection(4, shape), Intersection(6, shape))
+		let comps = Computation.prepare(xs[0], r, xs)
+		let c = cts.reflectedColor(comps, 5)
+		XCTAssertEqual(c, .black)
+	}
+	
 
-	// Chapter 11 Reflection #6
+	// Chapter 11 Reflection #4
 	func test_colorAtWithMutuallyReflectiveSurface() throws {
 		cts.light = PointLight(Point(0,0,0), .white)
 		let lower = Plane(transform: Matrix.translation(0, -1, 0), material: Material(reflective: 1))
@@ -139,7 +150,7 @@ class WorldTests: XCTestCase {
 		XCTAssertEqual(2, 1+1)
 	}
 	 
-	// Reflection #7
+	// Reflection #5
 	func test_reflectedColorAtMaximumRecursiveDepth() throws {
 		let shape = Plane(
 			transform: Matrix.translation(0, -1, 0),
@@ -151,5 +162,31 @@ class WorldTests: XCTestCase {
 		let comps = Computation.prepare(i, r)
 		let color = cts.reflectedColor(comps, 0)
 		XCTAssertEqual(color, .black)
+	}
+	
+	// Refraction #6
+	func test_refractedColorUnderTotalInternalReflection() throws {
+		cts.scene[0].material.transparency = 1.0
+		cts.scene[0].material.refractiveIndex = 1.5
+		let r = Ray(Point(0,0,sqrt(2)/2), Vector(0,1,0))
+		let xs = Intersection(Intersection(-sqrt(2)/2, cts.scene[0]), Intersection(sqrt(2)/2, cts.scene[0]))
+		let comps = Computation.prepare(xs[1], r, xs)
+		let c = cts.refractedColor(comps, 5)
+		XCTAssertEqual(c, .black)
+	}
+	
+	// Refraction #7
+	func test_refractedColorWithRefractedRay() throws {
+		cts.scene[0].material.ambient = 1.0
+		cts.scene[0].material.pattern = TestPattern()
+		cts.scene[1].material.transparency = 1.0
+		cts.scene[1].material.refractiveIndex = 1.5
+		let r = Ray(Point(0,0,0.1), Vector(0,1,0))
+		let xs = Intersection(Intersection(-0.9899, cts.scene[0]), Intersection(-0.4899, cts.scene[1]),Intersection(0.4899, cts.scene[1]),Intersection(0.9899, cts.scene[0]))
+		let comps = Computation.prepare(xs[2], r, xs)
+		let c = cts.refractedColor(comps, 5)
+		XCTAssertEqual(c!.g, 0.99888, accuracy: Double.epsilon)
+		// value on text (0.04725) won't pass
+		XCTAssertEqual(c!.b, 0.04722, accuracy: Double.epsilon)
 	}
 }

@@ -112,6 +112,12 @@ struct TestPattern: Pattern {
 	var b: Color
 	var transform: Matrix
 	
+	init() {
+		a = .white
+		b = .black
+		transform = Matrix.identity
+	}
+	
 	init(_ colorA: Color, _ colorB: Color, _ transform: Matrix = Matrix.identity) {
 		a = colorA
 		b = colorB

@@ -110,4 +110,55 @@ class IntersectionsTests: XCTestCase {
 		XCTAssertTrue(comps.overPoint.z < -Double.epsilon/2)
 		XCTAssertTrue(comps.point.z > comps.overPoint.z)
 	}
+	
+	// Chapter 11 - Transparency & Refraction
+	func test_findingN1andN2atVariousIntersections() throws {
+		let A = Sphere.glassy
+		A.transform = Matrix.scaling(2, 2, 2)
+		A.material.refractiveIndex = 1.5
+		
+		let B = Sphere.glassy
+		B.transform = Matrix.translation(0, 0, -0.25)
+		B.material.refractiveIndex = 2.0
+		
+		let C = Sphere.glassy
+		C.transform = Matrix.translation(0, 0, 0.25)
+		C.material.refractiveIndex = 2.5
+		
+		let r = Ray(Point(0,0,-4), Vector(0,0,1))
+		let xs = Intersection<Shape>(Intersection(2, A), Intersection(2.75, B), Intersection(3.25, C), Intersection(4.75, B), Intersection(5.25, C), Intersection(6, A))
+		let expects = [(1.0, 1.5), (1.5, 2.0), (2.0, 2.5), (2.5, 2.5), (2.5, 1.5), (1.5, 1.0)]
+		
+		for idx in 0..<xs.count {
+			//
+			// It really takes time to get this test right.
+			// This discussion helps me a lot:
+			// https://forum.raytracerchallenge.com/thread/24/stuck-on-n1-various-intersections
+			//
+			let comps = Computation.prepare(xs[idx], r, xs)
+			XCTAssertEqual(comps?.n1, expects[idx].0, "INDEX->: \(idx)")
+			XCTAssertEqual(comps?.n2, expects[idx].1, "INDEX->: \(idx)")
+		}
+	}
+	
+	// Chpater 11 test #3
+	func test_underPointIsOffsetBelowTheSurface() throws {
+		// Scenario​: The under point is offset below the surface
+		//​   ​Given​ r ← ray(point(0, 0, -5), vector(0, 0, 1))
+		//​     ​And​ shape ← glass_sphere() with:
+		//​       | transform | translation(0, 0, 1) |
+		//​     ​And​ i ← intersection(5, shape)
+		//​     ​And​ xs ← intersections(i)
+		//​   ​When​ comps ← prepare_computations(i, r, xs)
+		//​   ​Then​ comps.under_point.z > EPSILON/2
+		//​     ​And​ comps.point.z < comps.under_point.z”
+		let r = Ray(Point(0,0,-5), Vector(0,0,1))
+		let shape = Sphere.glassy
+		shape.transform = Matrix.translation(0, 0, 1)
+		let i = Intersection<Shape>(5, shape)
+		let xs = Intersection<Shape>(i)
+		guard let comps = Computation.prepare(i, r, xs) else { XCTFail(); return }
+		XCTAssertTrue(comps.underPoint.z > Double.epsilon/2)
+		XCTAssertTrue(comps.point.z < comps.underPoint.z)
+	}
 }

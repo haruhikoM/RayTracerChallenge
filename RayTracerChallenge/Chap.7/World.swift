@@ -111,6 +111,20 @@ extension World {
 		
 		return color * comps.object.material.reflective
 	}
+	
+	func refractedColor(_ comps: Computation?, _ remaining: Int = 4) -> Color? {
+		guard let comps = comps else { fatalError() }
+		let nRatio = comps.n1! / comps.n2!
+		let cosI = comps.eyeVector.dot(comps.normalVector)
+		let sin2T = pow(nRatio, 2) * (1 - pow(cosI, 2))
+		
+		let cosT = sqrt(1.0 - sin2T)
+		let direction = comps.normalVector * (nRatio * cosI - cosT) - comps.eyeVector * nRatio
+		let refractRay = Ray(comps.underPoint, direction)
+		let color = self.color(at: refractRay, remaining - 1) * comps.object.material.transparency
+		
+		return color
+	}
 }
 
 extension World {

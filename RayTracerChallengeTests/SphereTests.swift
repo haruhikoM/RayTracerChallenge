@@ -163,4 +163,6 @@ class SphereTests: XCTestCase {
 		XCTAssertEqual(s.material.transparency, 1.0)
 		XCTAssertEqual(s.material.refractiveIndex, 1.5)
 	}
+	
+	
 }
