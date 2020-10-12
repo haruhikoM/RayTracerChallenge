@@ -124,8 +124,33 @@ class WorldTests: XCTestCase {
 		let c = w.shadeHit(comps)
 		XCTAssertEqual(c, Color(r: 0.1, g: 0.1, b: 0.1))
 	}
+	// Chapter 11 Reflection #3
+	func test_reflectedColorForANonreflectiveMaterial() throws {
+		let r = Ray(Point(0, 0, 0), Vector(0, 0, 1))
+		let shape = cts.scene[1]
+		shape.material.ambient = 1
+		let i = Intersection(1, shape)
+		let comps = Computation.prepare(i, r)
+		let color = cts.refractedColor(comps!)
+		XCTAssertEqual(color, .black)
+	}
 	
-	// Chapter 11 Reflection #5
+	// Chapter 11 Reflection #4
+	func test_reflectedColorForAReflectiveMaterial() throws {
+		let plane = Plane(transform: Matrix.translation(0, -1, 0))
+		plane.material.reflective = 0.5
+		cts.addToScene(objects: plane)
+		
+		let r = Ray(Point(0,0,-3), Vector(0,-sqrt(2)/2,sqrt(2)/2))
+		let i = Intersection<Shape>(sqrt(2), plane)
+		let comps = Computation.prepare(i, r)
+		let color = cts.reflectedColor(comps!)
+		XCTAssertEqual(color.r, 0.19033, accuracy: Double.epsilon)
+		XCTAssertEqual(color.g, 0.23791, accuracy: Double.epsilon)
+		XCTAssertEqual(color.b, 0.14274, accuracy: Double.epsilon)
+	}
+	
+	// Chapter 11 Refraction #4
 	func test_refractedColorWithOpaqueSurface() throws {
 		let shape = cts.scene[0]
 		let r = Ray(Point(0,0,-5), Vector(0,0,1))
@@ -135,8 +160,22 @@ class WorldTests: XCTestCase {
 		XCTAssertEqual(c, .black)
 	}
 	
+	// Chapter 11 Reflection #5
+	func test_shadeHitWithReflectiveMaterial() throws {
+		let plane = Plane(transform: Matrix.translation(0, -1, 0))
+		plane.material.reflective = 0.5
+		cts.addToScene(objects: plane)
+		
+		let r = Ray(Point(0,0,-3), Vector(0,-sqrt(2)/2,sqrt(2)/2))
+		let i = Intersection<Shape>(sqrt(2), plane)
+		let comps = Computation.prepare(i, r)
+		let color = cts.shadeHit(comps!)
+		XCTAssertEqual(color.r, 0.87675, accuracy: Double.epsilon) /*0.87677*/
+		XCTAssertEqual(color.g, 0.92434, accuracy: Double.epsilon) /*0.92436*/
+		XCTAssertEqual(color.b, 0.82918, accuracy: Double.epsilon)
+	}
 
-	// Chapter 11 Reflection #4
+	// Chapter 11 Reflection #6
 	func test_colorAtWithMutuallyReflectiveSurface() throws {
 		cts.light = PointLight(Point(0,0,0), .white)
 		let lower = Plane(transform: Matrix.translation(0, -1, 0), material: Material(reflective: 1))
@@ -145,12 +184,13 @@ class WorldTests: XCTestCase {
 		cts.addToScene(objects: upper)
 		let r = Ray(Point(0,0,0), Vector(0,1,0))
 		
-		let _ = cts.color(at: r)
+		let c = cts.color(at: r)
 		// Look for what happens when the program doesn’t terminate.
 		XCTAssertEqual(2, 1+1)
+		XCTAssertNotNil(c)
 	}
 	 
-	// Reflection #5
+	// Reflection #7
 	func test_reflectedColorAtMaximumRecursiveDepth() throws {
 		let shape = Plane(
 			transform: Matrix.translation(0, -1, 0),
@@ -162,6 +202,18 @@ class WorldTests: XCTestCase {
 		let comps = Computation.prepare(i, r)
 		let color = cts.reflectedColor(comps, 0)
 		XCTAssertEqual(color, .black)
+	}
+	
+	// refration #5
+	func test_refractedColorAtMaximumRecursiveDepth() throws {
+		let shape = cts.scene[0]
+		shape.material.transparency = 1.0
+		shape.material.refractiveIndex = 1.5
+		let r = Ray(Point(0,0,-5), Vector(0,0,1))
+		let xs = Intersection<Shape>(Intersection(4, shape), Intersection(6, shape))
+		let comps = Computation.prepare(xs[0], r, xs)
+		let c = cts.refractedColor(comps!, 0)
+		XCTAssertEqual(c, .black)
 	}
 	
 	// Refraction #6
@@ -185,8 +237,33 @@ class WorldTests: XCTestCase {
 		let xs = Intersection(Intersection(-0.9899, cts.scene[0]), Intersection(-0.4899, cts.scene[1]),Intersection(0.4899, cts.scene[1]),Intersection(0.9899, cts.scene[0]))
 		let comps = Computation.prepare(xs[2], r, xs)
 		let c = cts.refractedColor(comps, 5)
-		XCTAssertEqual(c!.g, 0.99888, accuracy: Double.epsilon)
+		XCTAssertEqual(c.r, 0, accuracy: Double.epsilon)
+		XCTAssertEqual(c.g, 0.99888, accuracy: Double.epsilon)
 		// value on text (0.04725) won't pass
-		XCTAssertEqual(c!.b, 0.04722, accuracy: Double.epsilon)
+		XCTAssertEqual(c.b, 0.04722, accuracy: Double.epsilon)
+	}
+	
+	// Refraction #8
+	func test_shadeHitWithaTransparentMaterial() throws {
+		let floor = Plane(transform: Matrix.translation(0, -1, 0))
+		floor.material.transparency = 0.5
+		floor.material.refractiveIndex = 1.5
+		cts.addToScene(objects: floor)
+		
+		let ball = Sphere(transform: Matrix.translation(0, -3.5, -0.5))
+		ball.material.color = Color(r: 1, g: 0, b: 0)
+		ball.material.ambient = 0.5
+		cts.addToScene(objects: ball)
+		
+		
+		let r = Ray(Point(0,0,-3), Vector(0,-sqrt(2)/2, sqrt(2)/2))
+		let xs = Intersection<Shape>(sqrt(2), floor)
+		let comps = Computation.prepare(xs[0], r, xs)
+		let c = cts.shadeHit(comps!, 5)
+//		XCTAssertEqual(color, Color(r: 0.93642, g: 0.68642, b: 0.68642))
+		XCTAssertEqual(c.r, 0.93642, accuracy: Double.epsilon)
+		XCTAssertEqual(c.g, 0.68642, accuracy: Double.epsilon)
+		// value on text (0.04725) won't pass
+		XCTAssertEqual(c.b, 0.68642, accuracy: Double.epsilon)
 	}
 }

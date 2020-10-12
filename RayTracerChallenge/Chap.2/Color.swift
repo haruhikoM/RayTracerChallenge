@@ -57,6 +57,10 @@ extension Color {
 		return Color(r: lhs.r * rhs, g: lhs.g * rhs, b: lhs.b * rhs)
 	}
 	
+	static func / (lhs: Color, rhs: Double) -> Color {
+		return Color(r: lhs.r / rhs, g: lhs.g / rhs, b: lhs.b / rhs)
+	}
+	
 	//
 	// This creates the thing called: Hadamard product (or Schur product).
 	//

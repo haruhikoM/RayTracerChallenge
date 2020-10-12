@@ -15,9 +15,10 @@ struct Material: Equatable {
 	var specular: Double = 0.9
 	var shininess: Double = 200.0
 	var pattern: Pattern?
+	var blendedPattern: Blended?
 	var reflective: Double = 0.0
-	var transparency: Double = 0.0
-	var refractiveIndex: Double = 1.0
+	var transparency: Double = 0.0 // opaque by default
+	var refractiveIndex: Double = 1.0 // empty inside
 	
 	static func == (lhs: Material, rhs: Material) -> Bool {
 		guard
@@ -37,6 +38,9 @@ extension Material {
 		let _color: Color
 		if let p = pattern {
 			_color = p.pattern(of: object, at: point)
+		}
+		else if let bp = blendedPattern {
+			_color = bp.pattern(of: object, at: point)
 		}
 		else {
 			_color = color

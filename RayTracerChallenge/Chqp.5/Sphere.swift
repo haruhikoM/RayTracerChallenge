@@ -86,11 +86,13 @@ extension Shape {
 	}
 }
 
+#if DEBUG
 // For a test
 extension Shape {
 	static var testShape: Shape {
 		return Shape(Matrix.identity, Material())
 	}
 }
+#endif
 
 

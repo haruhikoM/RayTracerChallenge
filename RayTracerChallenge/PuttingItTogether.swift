@@ -120,8 +120,12 @@ extension Exercise {
 		save(text: canvas.toPPM, to: documentDirectory, named: fileName(chap: 4))
 	}
 	
-	func fileName(chap: Int) -> String {
-		"RTC-Chap\(chap)-" + fmtr.string(from: Date()) + ".ppm"
+	func fileName(chap: Int, interval: TimeInterval? = nil) -> String {
+		let fmt = NumberFormatter()
+		fmt.maximumFractionDigits = 1
+		fmt.allowsFloats = true
+		let timeText = interval != nil ? "[\(fmt.string(from: NSNumber(value: interval!)) ?? "")sec]" : ""
+		return  "RTC-Chap\(chap)-" + fmtr.string(from: Date()) + timeText + ".ppm"
 	}
 }
 
@@ -407,5 +411,33 @@ extension Exercise {
 		
 		let canvas = camera.render(world)
 		save(text: canvas.toPPM, to: documentDirectory, named: fileName(chap: 11_1))
+	}
+	
+	func chap_10_blendedPatterns() {
+		let rotateCW = Matrix.rotation(by: .y, radians: 315 * Double.pi/180)
+		let rotateCCW = Matrix.rotation(by: .y, radians: 45 * Double.pi/180)
+		
+		let scaleValue = 0.1
+		let scaling = Matrix.scaling(scaleValue,scaleValue,scaleValue)
+		
+		let floor = Plane()
+		floor.transform = Matrix.scaling(15, 1, 15) * Matrix.translation(0, -1, 0)
+		floor.material = Material(reflective: 0.5)
+		floor.material.color = .white
+		floor.material.specular = 0.5
+		let blended = Blended(a: Stripe(.white, .princeSymbol1, rotateCW * scaling),
+				b: Stripe(.white, .princeSymbol1, rotateCCW * scaling), transform: scaling)
+		floor.material.blendedPattern = blended
+		
+		var world = World()
+		world.light = PointLight(Point(-10,10,-10), .white)
+		
+		var camera = Camera(100, 50, Double.pi/4)
+		camera.transform = Transform.view(Point(0,10,-15), Point(0,1,-2), Vector(0,1,0))
+		
+		world.scene.append(floor)
+		camera.render(world) { canvas, interval in
+			save(text: canvas.toPPM, to: documentDirectory, named: fileName(chap: 10_2, interval: interval))
+		}
 	}
 }

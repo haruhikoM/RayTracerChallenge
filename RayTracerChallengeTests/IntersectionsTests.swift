@@ -112,6 +112,7 @@ class IntersectionsTests: XCTestCase {
 	}
 	
 	// Chapter 11 - Transparency & Refraction
+	// #2
 	func test_findingN1andN2atVariousIntersections() throws {
 		let A = Sphere.glassy
 		A.transform = Matrix.scaling(2, 2, 2)

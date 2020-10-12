@@ -50,7 +50,7 @@ struct Stripe: Pattern {
 	}
 	
 	func pattern(of object: Shape, at worldPoint: Tuple) -> Color {
-		let objectPoint = object.transform.inverse() *  worldPoint
+		let objectPoint  = object.transform.inverse() * worldPoint
 		let patternPoint = self.transform.inverse() * objectPoint
 		return pattern(at: patternPoint)
 	}
@@ -107,6 +107,30 @@ struct Checker: Pattern {
 	}
 }
 
+struct Blended {
+	var a: Pattern
+	var b: Pattern
+	var transform: Matrix = .identity
+
+	func pattern(of object: Shape?, at point: Tuple) -> Color {
+		let colors: (Color, Color)
+		let otherInversed = b.transform.inverse()
+		let patternTransformInversed = a.transform.inverse()
+
+		if let o = object {
+			let objectTransformInversed = o.transform.inverse()
+			colors.0 = a.pattern(at: patternTransformInversed * objectTransformInversed * point)
+			colors.1 = b.pattern(at: otherInversed * objectTransformInversed * point)
+		}
+		else {
+			colors.0 = a.pattern(at: patternTransformInversed * point)
+			colors.1 = b.pattern(at: otherInversed * point)
+		}
+		return (colors.0 + colors.1) / 2
+	}
+}
+
+#if DEBUG
 struct TestPattern: Pattern {
 	var a: Color
 	var b: Color
@@ -134,6 +158,7 @@ struct TestPattern: Pattern {
 		return p
 	}
 }
+#endif
 
 extension Pattern {
 //	func pattern(at point: Tuple) -> Color {
@@ -149,5 +174,4 @@ extension Pattern {
 		}
 		return pattern(at: patternTransformInversed * point)
 	}
-
 }

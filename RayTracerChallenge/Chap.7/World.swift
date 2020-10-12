@@ -57,8 +57,11 @@ extension World {
 										normalVector: comps.normalVector,
 										isInShadow: shadowed
 										)
+		
 		let reflected = reflectedColor(comps, remaining)
-		return surface + reflected
+		let refracted = refractedColor(comps, remaining)
+		
+		return surface + reflected + refracted
 	}
 	
 	
@@ -97,7 +100,7 @@ extension World {
 			let comps = comps,
 			let reflectV = comps.reflectVector
 		else {
-			fatalError("comps should not be nil")
+			fatalError("comps cannot be nil")
 		}
 		
 		if
@@ -112,8 +115,12 @@ extension World {
 		return color * comps.object.material.reflective
 	}
 	
-	func refractedColor(_ comps: Computation?, _ remaining: Int = 4) -> Color? {
-		guard let comps = comps else { fatalError() }
+	func refractedColor(_ comps: Computation?, _ remaining: Int = 4) -> Color {
+		if remaining <= 0 { return .black }
+		
+		guard let comps = comps else { fatalError("comps cannot be nil") }
+//		if comps.object.material.transparency <= 0 { return .black }
+		
 		let nRatio = comps.n1! / comps.n2!
 		let cosI = comps.eyeVector.dot(comps.normalVector)
 		let sin2T = pow(nRatio, 2) * (1 - pow(cosI, 2))
@@ -127,6 +134,7 @@ extension World {
 	}
 }
 
+#if DEBUG
 extension World {
 	static var _default: World {
 		var w = World()
@@ -143,3 +151,4 @@ extension World {
 		return w
 	}
 }
+#endif

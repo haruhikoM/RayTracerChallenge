@@ -24,4 +24,7 @@ class RayTracerChallengeTests: XCTestCase {
 	func _test_chap10_mid() throws {	e.chap10_stripeTrial() }
 	func _test_chap10() throws {	e.chap10() }
 	func _test_chap11_1() throws { e.chap11_1() }
+	func _test_pit() throws {
+		e.chap_10_blendedPatterns()
+	}
 }

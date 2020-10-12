@@ -18,8 +18,8 @@ struct Computation {
 	var overPoint: Tuple = .zero // Point
 	var underPoint: Tuple = .zero
 	var reflectVector: Tuple?
-	var n1: Double?
-	var n2: Double?
+	var n1: Double? // material being exited
+	var n2: Double? // material being entered
 	
 	static func prepare(_ i: Intersection<Shape>, _ r: Ray, _ xs: Intersection<Shape>? = nil) -> Computation? {
 		switch i {
@@ -43,15 +43,17 @@ struct Computation {
 			
 			var container = [Shape]()
 			let ixs: [Intersection<Shape>] // Maybe I should use AnyIteratable on Intersection enum.
-			switch xs {
+			
+			switch xs?.sort() {
 			case .multi(let _xs): ixs = _xs
 			default:
 				ixs = [i]
 			}
+			
 			for ins in ixs {
 				if i == ins {
 					if container.isEmpty { comps.n1 = 1.0 }
-					else {	comps.n1 = container.last!.material.refractiveIndex }
+					else { comps.n1 = container.last!.material.refractiveIndex }
 				}
 				
 				if  container.contains(ins.object!) {

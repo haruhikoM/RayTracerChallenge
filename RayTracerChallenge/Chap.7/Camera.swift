@@ -54,6 +54,7 @@ struct Camera {
 	}
 	
 	func render(_ world: World) -> Canvas {
+		let startTime = Date()
 		var image = Canvas(hSize, vSize)
 		
 		for y in 0..<vSize {
@@ -63,7 +64,45 @@ struct Camera {
 				image.write(pixel: color, at: (x, y))
 			}
 		}
+		
+		print("\n🏁🏁🏁 Time To Render -> \(Date().timeIntervalSince(startTime)) sec.\n")
 		return image
+	}
+	
+	
+	func render(_ world: World, completionHandler: @escaping (Canvas, TimeInterval?) -> Void) {
+		let startTime = Date()
+		var image = Canvas(hSize, vSize)
+		
+		let queue = OperationQueue()
+		queue.name = "me.okono.render"
+		queue.maxConcurrentOperationCount = 6
+		var renderOperations = [Operation]()
+		
+		for y in 0..<vSize {
+			for x in 0..<hSize {
+				let op = BlockOperation {
+					let r = self.rayForPixel(at: x, y)
+					let color = world.color(at: r)
+					image.write(pixel: color, at: (x, y))
+				}
+				renderOperations.append(op)
+			}
+		}
+		
+		queue.addOperations(renderOperations, waitUntilFinished: true)
+		let interval = Date().timeIntervalSince(startTime)
+		print("\n🏁🏁🏁 Time To Render -> \(interval) sec.\n")
+		completionHandler(image, interval)
+	
+		/*
+		Bench
+		Nothing -> 45 sec.
+		DispatchGroup -> 45 sec.
+		OperationQueue (4 cores) -> 14.5 sec.
+		OperationQueue (6 cores) -> 16.4 sec.
+		OperationQueue (8 cores) -> 18 sec.
+		*/
 	}
 	
 //	mutating func _pixelSize() -> Double {
