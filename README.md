@@ -30,7 +30,7 @@ http://raytracerchallenge.com
 
 - [x] Tuples, Points, and Vectors
 
-	`Tuple` is struct. `Point` and `Vector` are just plain Tuple with different `w` value because I couldn't find out how to make a single constructor returned different type of struct. Should I have used class or enum instead?
+	`Tuple` is struct. `Point` and `Vector` are just plain `Tuple` with different `w` value because I couldn't find out how to make a single constructor to return different types of struct. Should I have used `class` or `enum` instead?
 	
 - [x] Drawing on a Canvas
 - [x] Matrices
